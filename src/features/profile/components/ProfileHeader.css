@@ -1,0 +1,27 @@
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.profile-description {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-title {
+    font-size: 24px;
+  }
+
+  .profile-description {
+    font-size: 13px;
+  }
+}

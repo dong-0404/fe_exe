@@ -291,7 +291,7 @@ export const TutorDetailPage = () => {
                                         <div key={feedback._id} className="review-item">
                                             <div className="review-avatar">
                                                 <div className="avatar-placeholder">
-                                                    {feedback.authorUserId.fullName.charAt(0).toLowerCase()}
+                                                    {feedback.authorUserId.fullName.charAt(0).toUpperCase()}
                                                 </div>
                                             </div>
                                             <div className="review-content">

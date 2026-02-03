@@ -1,3 +1,3 @@
-export { StudentProfileForm } from './StudentProfileForm'
-export { TutorProfileForm } from './TutorProfileForm'
-
+export { ProfileSidebar } from './ProfileSidebar'
+export { ProfileHeader } from './ProfileHeader'
+export { AvatarUpload } from './AvatarUpload'
