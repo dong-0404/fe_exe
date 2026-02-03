@@ -1,0 +1,77 @@
+.register-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: white;
+  overflow-y: auto;
+}
+
+.register-form-wrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.register-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* Role Selection */
+.role-selection {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.role-radio {
+  font-size: 15px;
+  color: #2c3e50;
+}
+
+.role-radio .form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0066FF;
+  margin-right: 8px;
+}
+
+.role-radio .form-check-input:checked {
+  background-color: #0066FF;
+  border-color: #0066FF;
+}
+
+.role-radio .form-check-label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .register-form-container {
+    padding: 40px 30px;
+  }
+
+  .register-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .register-form-container {
+    padding: 30px 20px;
+  }
+
+  .register-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .role-selection {
+    gap: 20px;
+  }
+}

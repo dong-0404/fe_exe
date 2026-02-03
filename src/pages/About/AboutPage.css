@@ -1,0 +1,179 @@
+.about-page {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* Hero Section */
+.about-hero {
+  background: #ffffff;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #0066cc;
+}
+
+.about-intro {
+  font-size: 1.063rem;
+  line-height: 1.8;
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #333;
+  text-align: justify;
+}
+
+/* Main Content */
+.about-content {
+  padding: 20px 20px 60px;
+  background-color: #ffffff;
+}
+
+.about-content .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Content Sections */
+.content-section {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0066cc;
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+
+.section-text {
+  font-size: 1.063rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.section-list {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.section-list li {
+  font-size: 1.063rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 12px;
+  text-align: justify;
+  padding-left: 8px;
+}
+
+/* Vision Section */
+.vision-section {
+  background: transparent;
+  border-left: none;
+}
+
+/* Contact Section */
+.contact-section {
+  background: transparent;
+  padding: 40px 0;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 2px solid #e2e8f0;
+  margin-top: 40px;
+}
+
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-item {
+  font-size: 1.063rem;
+  color: #333;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.6;
+}
+
+.contact-icon {
+  font-size: 1.25rem;
+  min-width: 24px;
+}
+
+.contact-item strong {
+  color: #0066cc;
+  margin-right: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 40px 20px;
+  }
+
+  .about-title {
+    font-size: 1.875rem;
+  }
+
+  .about-intro {
+    font-size: 1rem;
+  }
+
+  .content-section {
+    padding: 24px;
+  }
+
+  .section-title {
+    font-size: 1.375rem;
+  }
+
+  .section-text,
+  .section-list li {
+    font-size: 0.938rem;
+  }
+
+  .contact-section {
+    padding: 24px;
+  }
+
+  .contact-item {
+    font-size: 0.938rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-intro {
+    font-size: 0.938rem;
+  }
+
+  .content-section {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,13 @@
+.auth-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .auth-page {
+    flex-direction: column;
+  }
+}
+

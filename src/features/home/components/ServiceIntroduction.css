@@ -1,0 +1,35 @@
+.service-intro {
+  padding: 4rem 2rem;
+  background-color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.service-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.service-title {
+  font-size: 3rem;
+  color: #0066cc;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.service-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .service-title {
+    font-size: 2rem;
+  }
+
+  .service-subtitle {
+    font-size: 1rem;
+  }
+}
+

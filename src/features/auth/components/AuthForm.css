@@ -1,0 +1,182 @@
+/* Shared Auth Form Styles */
+
+/* Form Labels */
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Fields */
+.auth-input {
+  height: 55px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.auth-input:focus {
+  border-color: #0066FF;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+  outline: none;
+}
+
+.auth-input::placeholder {
+  color: #999;
+}
+
+/* Password Toggle Button */
+.password-toggle {
+  height: 55px;
+  border: 2px solid #e0e0e0;
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  background: white;
+  color: #666;
+  transition: all 0.3s ease;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle:hover {
+  background: #f8f9fa;
+  color: #0066FF;
+  border-color: #e0e0e0;
+}
+
+.password-toggle:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.password-toggle:active {
+  background: #e9ecef;
+}
+
+/* Input Group - Border wraps entire group including eye icon */
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.input-group:focus-within {
+  border-color: #0066FF;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.input-group .auth-input {
+  border: none !important;
+  border-radius: 12px 0 0 12px !important;
+  box-shadow: none !important;
+  flex: 1;
+  background: transparent;
+}
+
+.input-group .auth-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.input-group .password-toggle {
+  border: none !important;
+  border-radius: 0 12px 12px 0 !important;
+  background: transparent;
+}
+
+.input-group .password-toggle:hover {
+  background: rgba(0, 102, 255, 0.05);
+}
+
+.input-group .password-toggle:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Override Bootstrap input-group styles */
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* Submit Button */
+.auth-button {
+  width: 100%;
+  height: 55px;
+  background: #0066FF;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #0052CC;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+}
+
+/* Auth Link */
+.auth-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 15px;
+  color: #666;
+}
+
+.auth-link-text {
+  color: #0066FF;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.auth-link-text:hover {
+  color: #0052CC;
+  text-decoration: underline;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.forgot-password a {
+  color: #0066FF;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #0052CC;
+  text-decoration: underline;
+}
+
+
+
+
