@@ -16,8 +16,8 @@ import type {
 // API Endpoints
 const ENDPOINTS = {
     CREATE_STUDENT: '/students',
-    GET_STUDENT_PROFILE: '/students/profile',  // GET student profile
-    UPDATE_STUDENT_PROFILE: '/students/profile',  // PUT to update
+    GET_STUDENT_PROFILE: '/students/profile',
+    UPDATE_STUDENT_PROFILE: '/students/profile',
     CREATE_TUTOR_PROFILE: '/tutors/profile',  // POST to create
     UPDATE_TUTOR_PROFILE: '/tutors/profile',  // PUT to update
     CREATE_CERTIFICATE: '/tutors/certificates', // POST certificates with images
@@ -48,7 +48,7 @@ export interface ProfileResponse {
 
 export const profileApi = {
     // ============ STUDENT PROFILE APIs ============
-    
+
     createStudentProfile: async (
         payload: CreateStudentProfilePayload
     ): Promise<ProfileResponse> => {
@@ -73,10 +73,10 @@ export const profileApi = {
         if (avatar) {
             // Use FormData if avatar is provided
             const formData = new FormData()
-            
+
             // Append avatar
             formData.append('avatar', avatar)
-            
+
             // Append other fields
             Object.entries(payload).forEach(([key, value]) => {
                 if (value !== undefined && value !== null) {

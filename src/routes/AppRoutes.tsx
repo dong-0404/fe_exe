@@ -13,6 +13,7 @@ import {
     ParentProfilePage,
     ProfileRedirect
 } from '../pages/Profile'
+import { StudentSetupPage, TutorSetupPage, ParentSetupPage } from '../pages/Setup'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { routes } from '../config/routes'
 
@@ -38,6 +39,11 @@ export const AppRoutes = () => {
             <Route path={routes.login} element={<LoginPage />} />
             <Route path={routes.register} element={<RegisterPage />} />
             <Route path={routes.otpVerification} element={<OTPVerificationPage />} />
+
+            {/* Setup Routes (first-time form after OTP - without MainLayout) */}
+            <Route path={routes.setupStudent} element={<StudentSetupPage />} />
+            <Route path={routes.setupTutor} element={<TutorSetupPage />} />
+            <Route path={routes.setupParent} element={<ParentSetupPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
         </Routes>

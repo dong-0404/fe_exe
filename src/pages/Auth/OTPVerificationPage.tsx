@@ -42,43 +42,54 @@ export const OTPVerificationPage = () => {
 
             if (response.success && response.data) {
                 // API message: "Registration completed successfully. You can now login."
-                setSuccess(response.message || 'Xác thực thành công! Đang chuyển đến trang điền thông tin...')
-
-                // Store userId and role in localStorage for later use
-                localStorage.setItem('userId', response.data.userId)
-                localStorage.setItem('userRole', response.data.role.toString())
-
-                // Use role from API response to determine profile page
                 const userRole = response.data.role
-                let profileRoute: string = routes.login
+                let redirectRoute: string = routes.login
+                let successMsg = ''
 
                 switch (userRole) {
                     case UserRole.STUDENT:
-                        profileRoute = routes.studentProfile
+                        redirectRoute = routes.setupStudent
+                        successMsg = 'Xác thực thành công! Đang chuyển đến trang điền thông tin...'
                         break
                     case UserRole.TUTOR:
-                        // profileRoute = routes.tutorProfile // TODO: Create tutor profile page
-                        profileRoute = routes.login // Temporary redirect to login
+                        // Tutor redirect to login instead of setup form
+                        redirectRoute = routes.login
+                        successMsg = 'Xác thực thành công! Vui lòng đăng nhập để tiếp tục.'
                         break
                     case UserRole.PARENT:
-                        // profileRoute = routes.parentProfile // TODO: Create parent profile page
-                        profileRoute = routes.login // Temporary redirect to login
+                        redirectRoute = routes.setupParent
+                        successMsg = 'Xác thực thành công! Đang chuyển đến trang điền thông tin...'
                         break
                     default:
-                        profileRoute = routes.login
+                        redirectRoute = routes.login
+                        successMsg = 'Xác thực thành công! Vui lòng đăng nhập để tiếp tục.'
                 }
 
-                // Redirect to profile page after 2 seconds
+                setSuccess(response.message || successMsg)
+
+                // Redirect after 2 seconds
                 setTimeout(() => {
-                    navigate(profileRoute, {
-                        replace: true,
-                        state: {
-                            userId: response.data?.userId,  // Use userId from API response
-                            email: response.data?.email || state.email,
-                            phone: state.phone,
-                            role: response.data?.role
-                        }
-                    })
+                    if (userRole === UserRole.TUTOR) {
+                        // For tutor, redirect to login with message
+                        navigate(redirectRoute, {
+                            replace: true,
+                            state: {
+                                message: 'Đăng ký thành công! Vui lòng đăng nhập để hoàn tất hồ sơ gia sư.',
+                                email: response.data?.email || state.email
+                            }
+                        })
+                    } else {
+                        // For student/parent, redirect to setup form
+                        navigate(redirectRoute, {
+                            replace: true,
+                            state: {
+                                userId: response.data?.userId,
+                                email: response.data?.email || state.email,
+                                phone: state.phone,
+                                role: response.data?.role
+                            }
+                        })
+                    }
                 }, 2000)
             } else {
                 setError(response.errors || response.message || 'Mã OTP không chính xác. Vui lòng thử lại.')
