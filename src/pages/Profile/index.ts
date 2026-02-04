@@ -1,4 +1,5 @@
 export { StudentProfilePage } from './StudentProfilePage'
-// Export thêm cho Tutor và Parent sau
-// export { TutorProfilePage } from './TutorProfilePage'
-// export { ParentProfilePage } from './ParentProfilePage'
+export { TutorProfilePage } from './TutorProfilePage'
+//export { TutorProfileViewPage } from './TutorProfileViewPage'
+export { ParentProfilePage } from './ParentProfilePage'
+export { ProfileRedirect } from './ProfileRedirect'

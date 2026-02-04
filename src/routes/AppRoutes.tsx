@@ -7,8 +7,12 @@ import { PrivacyPolicyPage } from '../pages/PrivacyPolicy'
 import { FindTutorPage } from '../pages/FindTutor/FindTutorPage'
 import { TutorDetailPage } from '../pages/TutorDetail'
 import { LoginPage, RegisterPage, OTPVerificationPage } from '../pages/Auth'
-import { StudentProfilePage } from '../pages/Profile'
-import { TutorProfilePage } from '../pages/Profile/TutorProfilePage'
+import {
+    StudentProfilePage,
+    TutorProfilePage,
+    ParentProfilePage,
+    ProfileRedirect
+} from '../pages/Profile'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { routes } from '../config/routes'
 
@@ -24,8 +28,10 @@ export const AppRoutes = () => {
                 <Route path={routes.tutorDetail} element={<TutorDetailPage />} />
 
                 {/* Profile Routes (with MainLayout - Header & Footer) */}
+                <Route path={routes.profile} element={<ProfileRedirect />} />
                 <Route path={routes.studentProfile} element={<StudentProfilePage />} />
                 <Route path={routes.tutorProfile} element={<TutorProfilePage />} />
+                <Route path={routes.parentProfile} element={<ParentProfilePage />} />
             </Route>
 
             {/* Auth Routes (without MainLayout) */}

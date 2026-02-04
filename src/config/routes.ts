@@ -11,6 +11,7 @@ export const routes = {
     login: '/login',
     register: '/register',
     otpVerification: '/verify-otp',
+    profile: '/profile', // Auto redirect dựa trên role
     studentProfile: '/profile/student',
     tutorProfile: '/profile/tutor',
     parentProfile: '/profile/parent',

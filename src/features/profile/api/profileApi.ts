@@ -8,10 +8,16 @@ import type {
     SubjectsResponse,
     GradesResponse
 } from '../types/tutorProfile'
+import type {
+    StudentProfileResponse,
+    UpdateStudentProfilePayload
+} from '../types/studentProfile'
 
 // API Endpoints
 const ENDPOINTS = {
     CREATE_STUDENT: '/students',
+    GET_STUDENT_PROFILE: '/students/profile',  // GET student profile
+    UPDATE_STUDENT_PROFILE: '/students/profile',  // PUT to update
     CREATE_TUTOR_PROFILE: '/tutors/profile',  // POST to create
     UPDATE_TUTOR_PROFILE: '/tutors/profile',  // PUT to update
     CREATE_CERTIFICATE: '/tutors/certificates', // POST certificates with images
@@ -41,6 +47,8 @@ export interface ProfileResponse {
 }
 
 export const profileApi = {
+    // ============ STUDENT PROFILE APIs ============
+    
     createStudentProfile: async (
         payload: CreateStudentProfilePayload
     ): Promise<ProfileResponse> => {
@@ -49,6 +57,56 @@ export const profileApi = {
             payload
         )
     },
+
+    // Get student profile
+    getStudentProfile: async (): Promise<StudentProfileResponse> => {
+        return apiClient.get<StudentProfileResponse>(
+            ENDPOINTS.GET_STUDENT_PROFILE
+        )
+    },
+
+    // Update student profile (with optional avatar upload)
+    updateStudentProfile: async (
+        payload: UpdateStudentProfilePayload,
+        avatar?: File
+    ): Promise<StudentProfileResponse> => {
+        if (avatar) {
+            // Use FormData if avatar is provided
+            const formData = new FormData()
+            
+            // Append avatar
+            formData.append('avatar', avatar)
+            
+            // Append other fields
+            Object.entries(payload).forEach(([key, value]) => {
+                if (value !== undefined && value !== null) {
+                    if (Array.isArray(value)) {
+                        value.forEach(item => formData.append(key, item))
+                    } else {
+                        formData.append(key, value.toString())
+                    }
+                }
+            })
+
+            return apiClient.put<StudentProfileResponse>(
+                ENDPOINTS.UPDATE_STUDENT_PROFILE,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+        } else {
+            // Use JSON if no avatar
+            return apiClient.put<StudentProfileResponse>(
+                ENDPOINTS.UPDATE_STUDENT_PROFILE,
+                payload
+            )
+        }
+    },
+
+    // ============ TUTOR PROFILE APIs ============
 
     // Create tutor profile - Step 1
     createTutorProfileStep1: async (

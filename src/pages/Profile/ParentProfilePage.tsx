@@ -1,178 +1,59 @@
-import { useState, useEffect } from 'react'
-import { Row, Col, Form, Button, Card, Alert, Spinner } from 'react-bootstrap'
+import { useState } from 'react'
+import { Row, Col, Form, Button, Card } from 'react-bootstrap'
 import { ProfileLayout } from '../../layouts/ProfileLayout'
 import { ProfileHeader } from '../../features/profile/components/ProfileHeader'
 import { AvatarUpload } from '../../features/profile/components/AvatarUpload'
 import { getCurrentUser } from '../../features/auth/utils/authHelpers'
 import { UserRole } from '../../features/auth/types'
-import { profileApi } from '../../features/profile/api/profileApi'
-import type { StudentProfileData } from '../../features/profile/types/studentProfile'
 import './ProfilePage.css'
 
-export const StudentProfilePage = () => {
+export const ParentProfilePage = () => {
     const currentUser = getCurrentUser()
     const [activeTab, setActiveTab] = useState('profile')
-    const [loading, setLoading] = useState(true)
-    const [saving, setSaving] = useState(false)
-    const [error, setError] = useState<string | null>(null)
-    const [successMessage, setSuccessMessage] = useState<string | null>(null)
-    const [avatarFile, setAvatarFile] = useState<File | null>(null)
 
     // Form state
     const [formData, setFormData] = useState({
         fullName: '',
         email: currentUser?.email || '',
         phone: currentUser?.phone || '',
-        grade: '',
-        school: '',
         gender: 1,
         dateOfBirth: '',
         address: '',
         avatar: ''
     })
 
-    // Load profile data on mount
-    useEffect(() => {
-        const loadProfile = async () => {
-            try {
-                setLoading(true)
-                setError(null)
-                const response = await profileApi.getStudentProfile()
-
-                if (response.success && response.data) {
-                    const profile: StudentProfileData = response.data
-
-                    // Format date for input[type="date"]
-                    const formattedDate = profile.dateOfBirth
-                        ? new Date(profile.dateOfBirth).toISOString().split('T')[0]
-                        : ''
-
-                    setFormData({
-                        fullName: profile.fullName || '',
-                        email: profile.userId.email || currentUser?.email || '',
-                        phone: profile.userId.phone || '',
-                        grade: profile.grade || '',
-                        school: profile.school || '',
-                        gender: Number(profile.gender) || 1,  // Ensure it's a number
-                        dateOfBirth: formattedDate,
-                        address: profile.address || '',
-                        avatar: profile.avatarUrl || ''
-                    })
-                }
-            } catch (err) {
-                console.error('Load profile error:', err)
-                const errorMessage = err instanceof Error ? err.message : 'Không thể tải thông tin hồ sơ'
-                setError(errorMessage)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        loadProfile()
-    }, [currentUser?.email])
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
         setFormData(prev => ({ ...prev, [name]: value }))
-        // Clear messages when user types
-        setError(null)
-        setSuccessMessage(null)
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
-        try {
-            setSaving(true)
-            setError(null)
-            setSuccessMessage(null)
-
-            // Prepare payload
-            const payload = {
-                fullName: formData.fullName,
-                gender: Number(formData.gender),  // Ensure it's a number
-                dateOfBirth: formData.dateOfBirth,
-                grade: formData.grade,
-                school: formData.school,
-                address: formData.address,
-            }
-
-            const response = await profileApi.updateStudentProfile(payload, avatarFile || undefined)
-
-            if (response.success) {
-                setSuccessMessage('Cập nhật hồ sơ thành công!')
-
-                // Update avatar preview if uploaded
-                if (response.data.avatarUrl) {
-                    setFormData(prev => ({ ...prev, avatar: response.data.avatarUrl || '' }))
-                }
-
-                // Clear avatar file after successful upload
-                setAvatarFile(null)
-
-                // Auto hide success message after 3 seconds
-                setTimeout(() => setSuccessMessage(null), 3000)
-            }
-        } catch (err) {
-            console.error('Save profile error:', err)
-            const errorMessage = err instanceof Error ? err.message : 'Không thể lưu thông tin hồ sơ'
-            setError(errorMessage)
-        } finally {
-            setSaving(false)
-        }
+        console.log('Save parent profile:', formData)
+        // TODO: Call API to save profile
     }
 
     const handleAvatarChange = (file: File) => {
-        setAvatarFile(file)
-        // Create preview URL
-        const previewUrl = URL.createObjectURL(file)
-        setFormData(prev => ({ ...prev, avatar: previewUrl }))
-    }
-
-    // Loading state
-    if (loading) {
-        return (
-            <ProfileLayout
-                role={UserRole.STUDENT}
-                activeTab={activeTab}
-                onTabChange={setActiveTab}
-            >
-                <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '400px' }}>
-                    <Spinner animation="border" variant="primary" />
-                    <span className="ms-3">Đang tải thông tin...</span>
-                </div>
-            </ProfileLayout>
-        )
+        console.log('Avatar selected:', file)
+        // TODO: Upload avatar
     }
 
     return (
         <ProfileLayout
-            role={UserRole.STUDENT}
+            role={UserRole.PARENT}
             activeTab={activeTab}
             onTabChange={setActiveTab}
         >
             {activeTab === 'profile' && (
                 <>
                     <ProfileHeader
-                        title="Hồ sơ của tôi"
+                        title="Hồ sơ phụ huynh"
                         description="Quản lý thông tin hồ sơ để bảo mật tài khoản"
                     />
 
-                    {/* Success/Error Messages */}
-                    {successMessage && (
-                        <Alert variant="success" dismissible onClose={() => setSuccessMessage(null)}>
-                            {successMessage}
-                        </Alert>
-                    )}
-                    {error && (
-                        <Alert variant="danger" dismissible onClose={() => setError(null)}>
-                            {error}
-                        </Alert>
-                    )}
-
                     <Card className="profile-card">
                         <Card.Body>
-                            <h5 className="section-title mb-4">Thông tin học sinh</h5>
+                            <h5 className="section-title mb-4">Thông tin phụ huynh</h5>
 
                             <Form onSubmit={handleSubmit}>
                                 <Row>
@@ -195,37 +76,37 @@ export const StudentProfilePage = () => {
                                             </Row>
                                         </Form.Group>
 
-                                        {/* Học sinh lớp */}
+                                        {/* Email */}
                                         <Form.Group className="mb-3 profile-form-group">
                                             <Row>
                                                 <Col sm={3}>
-                                                    <Form.Label className="profile-label">Học sinh lớp</Form.Label>
+                                                    <Form.Label className="profile-label">Email</Form.Label>
                                                 </Col>
                                                 <Col sm={9}>
                                                     <Form.Control
-                                                        type="text"
-                                                        name="grade"
-                                                        value={formData.grade}
-                                                        onChange={handleChange}
-                                                        placeholder="Lớp 10"
+                                                        type="email"
+                                                        name="email"
+                                                        value={formData.email}
+                                                        disabled
+                                                        readOnly
                                                     />
                                                 </Col>
                                             </Row>
                                         </Form.Group>
 
-                                        {/* Trường học */}
+                                        {/* Số điện thoại */}
                                         <Form.Group className="mb-3 profile-form-group">
                                             <Row>
                                                 <Col sm={3}>
-                                                    <Form.Label className="profile-label">Trường học</Form.Label>
+                                                    <Form.Label className="profile-label">Số điện thoại</Form.Label>
                                                 </Col>
                                                 <Col sm={9}>
                                                     <Form.Control
-                                                        type="text"
-                                                        name="school"
-                                                        value={formData.school}
+                                                        type="tel"
+                                                        name="phone"
+                                                        value={formData.phone}
                                                         onChange={handleChange}
-                                                        placeholder="Trung học cơ sở Yên Bình"
+                                                        placeholder="Nhập số điện thoại"
                                                     />
                                                 </Col>
                                             </Row>
@@ -267,32 +148,40 @@ export const StudentProfilePage = () => {
                                                     <Form.Label className="profile-label">Ngày sinh</Form.Label>
                                                 </Col>
                                                 <Col sm={9}>
-                                                    <Form.Control
-                                                        type="date"
-                                                        name="dateOfBirth"
-                                                        value={formData.dateOfBirth}
-                                                        onChange={handleChange}
-                                                    />
+                                                    <div className="d-flex align-items-center gap-2">
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="dateOfBirth"
+                                                            value={formData.dateOfBirth}
+                                                            onChange={handleChange}
+                                                            placeholder="**/**/1980"
+                                                        />
+                                                        <Button
+                                                            variant="link"
+                                                            className="p-0 text-primary"
+                                                            style={{ fontSize: '14px' }}
+                                                        >
+                                                            Thay đổi
+                                                        </Button>
+                                                    </div>
                                                 </Col>
                                             </Row>
                                         </Form.Group>
 
-                                        {/* Khu vực sống */}
-                                        <Form.Group className="mb-3 profile-form-group">
+                                        {/* Địa chỉ */}
+                                        <Form.Group className="mb-4 profile-form-group">
                                             <Row>
                                                 <Col sm={3}>
-                                                    <Form.Label className="profile-label">Khu vực sống</Form.Label>
+                                                    <Form.Label className="profile-label">Địa chỉ</Form.Label>
                                                 </Col>
                                                 <Col sm={9}>
-                                                    <div className="d-flex align-items-center gap-2">
-                                                        <Form.Control
-                                                            type="text"
-                                                            name="address"
-                                                            value={formData.address}
-                                                            onChange={handleChange}
-                                                            placeholder="123 Đường ABC, Quận 1, TP.HCM"
-                                                        />
-                                                    </div>
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="address"
+                                                        value={formData.address}
+                                                        onChange={handleChange}
+                                                        placeholder="Nhập địa chỉ"
+                                                    />
                                                 </Col>
                                             </Row>
                                         </Form.Group>
@@ -302,23 +191,8 @@ export const StudentProfilePage = () => {
                                             <Button
                                                 type="submit"
                                                 className="btn-save-profile"
-                                                disabled={saving}
                                             >
-                                                {saving ? (
-                                                    <>
-                                                        <Spinner
-                                                            as="span"
-                                                            animation="border"
-                                                            size="sm"
-                                                            role="status"
-                                                            aria-hidden="true"
-                                                            className="me-2"
-                                                        />
-                                                        Đang lưu...
-                                                    </>
-                                                ) : (
-                                                    'Lưu'
-                                                )}
+                                                Lưu
                                             </Button>
                                         </div>
                                     </Col>
@@ -343,7 +217,6 @@ export const StudentProfilePage = () => {
                         title="Đổi mật khẩu"
                         description="Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác"
                     />
-                    {/* Password change form will be here */}
                     <Card className="profile-card">
                         <Card.Body>
                             <p>Đổi mật khẩu content here...</p>
@@ -352,15 +225,43 @@ export const StudentProfilePage = () => {
                 </div>
             )}
 
+            {activeTab === 'children' && (
+                <div>
+                    <ProfileHeader
+                        title="Quản lý con cái"
+                        description="Thông tin các con bạn đang học"
+                    />
+                    <Card className="profile-card">
+                        <Card.Body>
+                            <p>Danh sách con cái content here...</p>
+                        </Card.Body>
+                    </Card>
+                </div>
+            )}
+
             {activeTab === 'schedule' && (
                 <div>
                     <ProfileHeader
-                        title="Quản lý lịch học"
-                        description="Xem và quản lý lịch học của bạn"
+                        title="Lịch học của con"
+                        description="Xem và quản lý lịch học của các con"
                     />
                     <Card className="profile-card">
                         <Card.Body>
                             <p>Lịch học content here...</p>
+                        </Card.Body>
+                    </Card>
+                </div>
+            )}
+
+            {activeTab === 'payment' && (
+                <div>
+                    <ProfileHeader
+                        title="Quản lý thanh toán"
+                        description="Lịch sử thanh toán và hóa đơn"
+                    />
+                    <Card className="profile-card">
+                        <Card.Body>
+                            <p>Lịch sử thanh toán content here...</p>
                         </Card.Body>
                     </Card>
                 </div>

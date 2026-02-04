@@ -64,7 +64,7 @@ export const MainLayout = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => navigate('/profile')}>
+                  <Dropdown.Item onClick={() => navigate(routes.profile)}>
                     👤 Hồ sơ của tôi
                   </Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate('/settings')}>
