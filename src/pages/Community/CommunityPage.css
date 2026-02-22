@@ -1,0 +1,212 @@
+.community-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 24px 0;
+}
+
+.community-page__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.community-page__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.community-page__header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.community-page__header p {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* Create Post Card */
+.community-page__create-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.community-page__create-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.community-page__user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.community-page__user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.community-page__avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.community-page__create-input {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 24px;
+  font-size: 15px;
+  color: #6b7280;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.community-page__create-input:hover {
+  background-color: #e5e7eb;
+}
+
+.community-page__create-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 12px 0;
+}
+
+.community-page__create-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.community-page__action-btn {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.community-page__action-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.community-page__action-btn svg {
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+.community-page__action-btn--primary {
+  color: #3b82f6;
+}
+
+.community-page__action-btn--primary svg {
+  color: #3b82f6;
+}
+
+.community-page__action-btn--primary:hover {
+  background-color: #eff6ff;
+}
+
+.community-page__error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .community-page {
+    padding: 16px 0;
+  }
+
+  .community-page__container {
+    padding: 0 12px;
+  }
+
+  .community-page__header {
+    margin-bottom: 24px;
+  }
+
+  .community-page__header h1 {
+    font-size: 24px;
+  }
+
+  .community-page__header p {
+    font-size: 14px;
+  }
+
+  .community-page__create-card {
+    padding: 14px 16px;
+  }
+
+  .community-page__user-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .community-page__avatar-placeholder {
+    font-size: 16px;
+  }
+
+  .community-page__create-input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .community-page__create-actions {
+    gap: 6px;
+  }
+
+  .community-page__action-btn {
+    min-width: auto;
+    flex: 1 1 calc(50% - 3px);
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .community-page__action-btn:nth-child(3) {
+    flex: 1 1 100%;
+  }
+
+  .community-page__action-btn span {
+    display: none;
+  }
+
+  .community-page__action-btn:nth-child(3) span {
+    display: inline;
+  }
+}

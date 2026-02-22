@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import { MainLayout } from '../layouts/MainLayout'
+import { ProtectedRoute } from '../components/ProtectedRoute'
 import { HomePage } from '../pages/Home/HomePage'
 import { AboutPage } from '../pages/About/AboutPage'
 import { ContactPage } from '../pages/Contact'
 import { PrivacyPolicyPage } from '../pages/PrivacyPolicy'
 import { FindTutorPage } from '../pages/FindTutor/FindTutorPage'
 import { TutorDetailPage } from '../pages/TutorDetail'
+import { CommunityPage } from '../pages/Community'
 import { LoginPage, RegisterPage, OTPVerificationPage } from '../pages/Auth'
 import {
     StudentProfilePage,
@@ -27,12 +29,50 @@ export const AppRoutes = () => {
                 <Route path={routes.privacyPolicy} element={<PrivacyPolicyPage />} />
                 <Route path={routes.findTutor} element={<FindTutorPage />} />
                 <Route path={routes.tutorDetail} element={<TutorDetailPage />} />
+                
+                {/* Protected Routes - Require Authentication */}
+                <Route 
+                    path={routes.community} 
+                    element={
+                        <ProtectedRoute>
+                            <CommunityPage />
+                        </ProtectedRoute>
+                    } 
+                />
 
                 {/* Profile Routes (with MainLayout - Header & Footer) */}
-                <Route path={routes.profile} element={<ProfileRedirect />} />
-                <Route path={routes.studentProfile} element={<StudentProfilePage />} />
-                <Route path={routes.tutorProfile} element={<TutorProfilePage />} />
-                <Route path={routes.parentProfile} element={<ParentProfilePage />} />
+                <Route 
+                    path={routes.profile} 
+                    element={
+                        <ProtectedRoute>
+                            <ProfileRedirect />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path={routes.studentProfile} 
+                    element={
+                        <ProtectedRoute>
+                            <StudentProfilePage />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path={routes.tutorProfile} 
+                    element={
+                        <ProtectedRoute>
+                            <TutorProfilePage />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path={routes.parentProfile} 
+                    element={
+                        <ProtectedRoute>
+                            <ParentProfilePage />
+                        </ProtectedRoute>
+                    } 
+                />
             </Route>
 
             {/* Auth Routes (without MainLayout) */}

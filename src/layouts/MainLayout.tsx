@@ -31,7 +31,7 @@ export const MainLayout = () => {
             <nav className="d-flex gap-4">
               <Link to={routes.home} className="text-white text-decoration-none">Trang chủ</Link>
               <Link to={routes.findTutor} className="text-white text-decoration-none">Tìm kiếm gia sư</Link>
-              <Link to={routes.postLesson} className="text-white text-decoration-none">Post bài</Link>
+              <Link to={routes.community} className="text-white text-decoration-none">Post bài</Link>
               <Link to={routes.schedule} className="text-white text-decoration-none">Lịch học</Link>
             </nav>
 
@@ -66,6 +66,9 @@ export const MainLayout = () => {
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => navigate(routes.profile)}>
                     👤 Hồ sơ của tôi
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate(routes.chat)}>
+                    💬 Chat
                   </Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate('/settings')}>
                     ⚙️ Cài đặt

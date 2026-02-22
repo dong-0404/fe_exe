@@ -8,6 +8,8 @@ export const routes = {
     tutorDetail: '/tutor/:id',
     postLesson: '/post-lesson',
     schedule: '/schedule',
+    community: '/community',
+    chat: '/chat',
     login: '/login',
     register: '/register',
     otpVerification: '/verify-otp',

@@ -9,6 +9,7 @@ import './LoginForm.css'
 
 interface LocationState {
     message?: string
+    from?: { pathname: string }
 }
 
 export const LoginForm = () => {
@@ -75,8 +76,9 @@ export const LoginForm = () => {
                     localStorage.removeItem('savedEmail')
                 }
 
-                // Redirect dựa trên role và trạng thái profile
-                const redirectPath = getRedirectPath(
+                // Redirect về trang user đang cố truy cập, hoặc dựa trên role
+                const from = state?.from?.pathname
+                const redirectPath = from || getRedirectPath(
                     response.data.user.role,
                     response.data.profileCompleted
                 )

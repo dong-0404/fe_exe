@@ -19,7 +19,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                     <nav className="header-nav">
                         <Link to={routes.home}>Trang chủ</Link>
                         <Link to={routes.findTutor}>Tìm kiếm gia sư</Link>
-                        <Link to={routes.postLesson}>Post bài</Link>
+                        <Link to={routes.community}>Post bài</Link>
                         <Link to={routes.schedule}>Lịch học</Link>
                     </nav>
                     <Link to={routes.login} className="header-login">
