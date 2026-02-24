@@ -2,129 +2,249 @@ import type { Tutor } from '../types'
 
 export const mockTutors: Tutor[] = [
   {
-    id: '1',
-    name: 'Tường Duy Chiến',
-    birthDate: '09/05/2003',
-    gender: 'Nam',
+    _id: '1',
+    userId: {
+      _id: 'user1',
+      email: 'chien@example.com',
+      phone: '0123456789',
+      fullName: 'Tường Duy Chiến'
+    },
+    fullName: 'Tường Duy Chiến',
+    gender: 1, // Nam
+    dateOfBirth: '2003-05-09',
+    placeOfBirth: 'Hà Nội',
+    teachingArea: 'Hà Nội',
+    hourlyRate: 150000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6],
+    availableTimeSlots: ['afternoon', 'evening'],
+    averageRating: 4.5,
+    totalFeedback: 10,
     subjects: [
-      { id: 1, subjectName: 'Toán' },
-      { id: 2, subjectName: 'Lý' },
-      { id: 3, subjectName: 'Hóa' }
+      { _id: 'sub1', code: 'MATH', name: 'Toán' },
+      { _id: 'sub2', code: 'PHYS', name: 'Lý' },
+      { _id: 'sub3', code: 'CHEM', name: 'Hóa' }
     ],
-    location: 'Hà Nội',
-    price: 150000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: true
+    grades: [],
+    createdAt: '2024-01-01T00:00:00.000Z',
+    updatedAt: '2024-01-01T00:00:00.000Z'
   },
   {
-    id: '2',
-    name: 'Nguyễn Thị Mai',
-    birthDate: '15/08/2001',
-    gender: 'Nữ',
+    _id: '2',
+    userId: {
+      _id: 'user2',
+      email: 'mai@example.com',
+      phone: '0123456790',
+      fullName: 'Nguyễn Thị Mai'
+    },
+    fullName: 'Nguyễn Thị Mai',
+    gender: 2, // Nữ
+    dateOfBirth: '2001-08-15',
+    placeOfBirth: 'Hà Nội',
+    teachingArea: 'Hà Nội',
+    hourlyRate: 180000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6, 7],
+    availableTimeSlots: ['morning', 'afternoon'],
+    averageRating: 4.8,
+    totalFeedback: 15,
     subjects: [
-      { id: 4, subjectName: 'Văn' },
-      { id: 5, subjectName: 'Sử' },
-      { id: 6, subjectName: 'Địa' }
+      { _id: 'sub4', code: 'LIT', name: 'Văn' },
+      { _id: 'sub5', code: 'HIST', name: 'Sử' },
+      { _id: 'sub6', code: 'GEO', name: 'Địa' }
     ],
-    location: 'Hà Nội',
-    price: 180000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: true
+    grades: [],
+    createdAt: '2024-01-02T00:00:00.000Z',
+    updatedAt: '2024-01-02T00:00:00.000Z'
   },
   {
-    id: '3',
-    name: 'Trần Văn Đức',
-    birthDate: '22/03/2002',
-    gender: 'Nam',
+    _id: '3',
+    userId: {
+      _id: 'user3',
+      email: 'duc@example.com',
+      phone: '0123456791',
+      fullName: 'Trần Văn Đức'
+    },
+    fullName: 'Trần Văn Đức',
+    gender: 1, // Nam
+    dateOfBirth: '2002-03-22',
+    placeOfBirth: 'Hồ Chí Minh',
+    teachingArea: 'Hồ Chí Minh',
+    hourlyRate: 200000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [3, 4, 5, 6, 7],
+    availableTimeSlots: ['afternoon', 'evening'],
+    averageRating: 4.2,
+    totalFeedback: 8,
     subjects: [
-      { id: 7, subjectName: 'Tiếng Anh' },
-      { id: 1, subjectName: 'Toán' }
+      { _id: 'sub7', code: 'ENG', name: 'Tiếng Anh' },
+      { _id: 'sub1', code: 'MATH', name: 'Toán' }
     ],
-    location: 'Hồ Chí Minh',
-    price: 200000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: false
+    grades: [],
+    createdAt: '2024-01-03T00:00:00.000Z',
+    updatedAt: '2024-01-03T00:00:00.000Z'
   },
   {
-    id: '4',
-    name: 'Lê Thị Hương',
-    birthDate: '10/11/2000',
-    gender: 'Nữ',
+    _id: '4',
+    userId: {
+      _id: 'user4',
+      email: 'huong@example.com',
+      phone: '0123456792',
+      fullName: 'Lê Thị Hương'
+    },
+    fullName: 'Lê Thị Hương',
+    gender: 2, // Nữ
+    dateOfBirth: '2000-11-10',
+    placeOfBirth: 'Hà Nội',
+    teachingArea: 'Hà Nội',
+    hourlyRate: 160000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6],
+    availableTimeSlots: ['morning', 'afternoon', 'evening'],
+    averageRating: 4.7,
+    totalFeedback: 12,
     subjects: [
-      { id: 8, subjectName: 'Sinh học' },
-      { id: 3, subjectName: 'Hóa' }
+      { _id: 'sub8', code: 'BIO', name: 'Sinh học' },
+      { _id: 'sub3', code: 'CHEM', name: 'Hóa' }
     ],
-    location: 'Hà Nội',
-    price: 160000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: true
+    grades: [],
+    createdAt: '2024-01-04T00:00:00.000Z',
+    updatedAt: '2024-01-04T00:00:00.000Z'
   },
   {
-    id: '5',
-    name: 'Phạm Minh Tuấn',
-    birthDate: '05/07/2003',
-    gender: 'Nam',
+    _id: '5',
+    userId: {
+      _id: 'user5',
+      email: 'tuan@example.com',
+      phone: '0123456793',
+      fullName: 'Phạm Minh Tuấn'
+    },
+    fullName: 'Phạm Minh Tuấn',
+    gender: 1, // Nam
+    dateOfBirth: '2003-07-05',
+    placeOfBirth: 'Đà Nẵng',
+    teachingArea: 'Đà Nẵng',
+    hourlyRate: 170000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6, 7],
+    availableTimeSlots: ['afternoon'],
+    averageRating: 4.0,
+    totalFeedback: 5,
     subjects: [
-      { id: 9, subjectName: 'Vật lý' },
-      { id: 1, subjectName: 'Toán' },
-      { id: 2, subjectName: 'Lý' }
+      { _id: 'sub9', code: 'PHYS2', name: 'Vật lý' },
+      { _id: 'sub1', code: 'MATH', name: 'Toán' },
+      { _id: 'sub2', code: 'PHYS', name: 'Lý' }
     ],
-    location: 'Đà Nẵng',
-    price: 170000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: false
+    grades: [],
+    createdAt: '2024-01-05T00:00:00.000Z',
+    updatedAt: '2024-01-05T00:00:00.000Z'
   },
   {
-    id: '6',
-    name: 'Hoàng Thị Lan',
-    birthDate: '18/09/2001',
-    gender: 'Nữ',
+    _id: '6',
+    userId: {
+      _id: 'user6',
+      email: 'lan@example.com',
+      phone: '0123456794',
+      fullName: 'Hoàng Thị Lan'
+    },
+    fullName: 'Hoàng Thị Lan',
+    gender: 2, // Nữ
+    dateOfBirth: '2001-09-18',
+    placeOfBirth: 'Hà Nội',
+    teachingArea: 'Hà Nội',
+    hourlyRate: 190000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6],
+    availableTimeSlots: ['morning', 'afternoon'],
+    averageRating: 4.9,
+    totalFeedback: 20,
     subjects: [
-      { id: 7, subjectName: 'Tiếng Anh' },
-      { id: 4, subjectName: 'Văn' }
+      { _id: 'sub7', code: 'ENG', name: 'Tiếng Anh' },
+      { _id: 'sub4', code: 'LIT', name: 'Văn' }
     ],
-    location: 'Hà Nội',
-    price: 190000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: true
+    grades: [],
+    createdAt: '2024-01-06T00:00:00.000Z',
+    updatedAt: '2024-01-06T00:00:00.000Z'
   },
   {
-    id: '7',
-    name: 'Vũ Đức Anh',
-    birthDate: '25/12/2002',
-    gender: 'Nam',
+    _id: '7',
+    userId: {
+      _id: 'user7',
+      email: 'anh@example.com',
+      phone: '0123456795',
+      fullName: 'Vũ Đức Anh'
+    },
+    fullName: 'Vũ Đức Anh',
+    gender: 1, // Nam
+    dateOfBirth: '2002-12-25',
+    placeOfBirth: 'Hồ Chí Minh',
+    teachingArea: 'Hồ Chí Minh',
+    hourlyRate: 220000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6, 7, 8],
+    availableTimeSlots: ['morning', 'afternoon', 'evening'],
+    averageRating: 4.6,
+    totalFeedback: 18,
     subjects: [
-      { id: 1, subjectName: 'Toán' },
-      { id: 2, subjectName: 'Lý' },
-      { id: 3, subjectName: 'Hóa' },
-      { id: 8, subjectName: 'Sinh' }
+      { _id: 'sub1', code: 'MATH', name: 'Toán' },
+      { _id: 'sub2', code: 'PHYS', name: 'Lý' },
+      { _id: 'sub3', code: 'CHEM', name: 'Hóa' },
+      { _id: 'sub8', code: 'BIO', name: 'Sinh' }
     ],
-    location: 'Hồ Chí Minh',
-    price: 220000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: true
+    grades: [],
+    createdAt: '2024-01-07T00:00:00.000Z',
+    updatedAt: '2024-01-07T00:00:00.000Z'
   },
   {
-    id: '8',
-    name: 'Đỗ Thị Hoa',
-    birthDate: '14/04/2000',
-    gender: 'Nữ',
+    _id: '8',
+    userId: {
+      _id: 'user8',
+      email: 'hoa@example.com',
+      phone: '0123456796',
+      fullName: 'Đỗ Thị Hoa'
+    },
+    fullName: 'Đỗ Thị Hoa',
+    gender: 2, // Nữ
+    dateOfBirth: '2000-04-14',
+    placeOfBirth: 'Hà Nội',
+    teachingArea: 'Hà Nội',
+    hourlyRate: 155000,
+    profileStatus: 1,
+    currentStep: 4,
+    completedSteps: [1, 2, 3, 4],
+    isProfileComplete: true,
+    availableDays: [2, 3, 4, 5, 6],
+    availableTimeSlots: ['afternoon'],
+    averageRating: 4.3,
+    totalFeedback: 7,
     subjects: [
-      { id: 4, subjectName: 'Văn' },
-      { id: 5, subjectName: 'Sử' }
+      { _id: 'sub4', code: 'LIT', name: 'Văn' },
+      { _id: 'sub5', code: 'HIST', name: 'Sử' }
     ],
-    location: 'Hà Nội',
-    price: 155000,
-    priceUnit: 'đ/buổi',
-    duration: '90 phút',
-    badge: false
+    grades: [],
+    createdAt: '2024-01-08T00:00:00.000Z',
+    updatedAt: '2024-01-08T00:00:00.000Z'
   }
 ]
 

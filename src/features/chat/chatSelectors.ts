@@ -4,7 +4,6 @@
 
 import { createSelector } from '@reduxjs/toolkit'
 import type { RootState } from '../../app/store'
-import type { Conversation } from './types'
 
 // Base selectors
 export const selectChatState = (state: RootState) => state.chat
@@ -110,7 +109,7 @@ export const selectReadNotifications = createSelector(
 )
 
 // Check if user is online (placeholder - would need real implementation)
-export const selectIsUserOnline = (userId: string) => createSelector(
+export const selectIsUserOnline = () => createSelector(
   [selectChatState],
   () => {
     // TODO: Implement online status tracking

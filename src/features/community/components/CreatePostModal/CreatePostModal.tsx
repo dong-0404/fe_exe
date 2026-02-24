@@ -46,9 +46,14 @@ export const CreatePostModal = ({
     content: string
     images: string[]
     tags: string[]
-    postType: 'findTutor' | 'share'
+    postType: 1 | 2
   }) => {
-    onSubmit(data)
+    // Convert postType from number (1|2) to string ('findTutor'|'share')
+    const postTypeString: 'findTutor' | 'share' = data.postType === 1 ? 'findTutor' : 'share'
+    onSubmit({
+      ...data,
+      postType: postTypeString
+    })
     onClose()
   }
 

@@ -6,7 +6,7 @@
 import { useEffect } from 'react'
 import { useAppDispatch } from '../../../app/hooks'
 import { websocketService } from '../api/websocketService'
-import { setWsConnected, addMessage, addNotification, setTyping, markMessagesAsRead } from '../chatSlice'
+import { setWsConnected, addMessage, setTyping, markMessagesAsRead } from '../chatSlice'
 import { getAuthToken } from '../../auth/utils/authHelpers'
 import type { WSEvent, MessageNewEvent, MessageReadEvent, TypingEvent } from '../types'
 

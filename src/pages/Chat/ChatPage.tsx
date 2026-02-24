@@ -3,7 +3,7 @@
  * Main chat page container
  */
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { ChatSidebar } from '../../features/chat/components/ChatSidebar'
 import { ChatWindow } from '../../features/chat/components/ChatWindow'

@@ -54,7 +54,7 @@ export const ProfileSidebar = ({ role, activeTab, onTabChange }: ProfileSidebarP
                         </svg>
                     </div>
                 </div>
-                <h6 className="user-name">{currentUser?.name || currentUser?.email || 'User'}</h6>
+                <h6 className="user-name">{currentUser?.email || 'User'}</h6>
                 <button className="btn-edit-profile">
                     Sửa hồ sơ 📝
                 </button>

@@ -56,7 +56,7 @@ export interface ChatNotification {
 }
 
 // WebSocket event types
-export type WSEventType = 
+export type WSEventType =
   | 'message:new'
   | 'message:read'
   | 'typing:start'
@@ -66,7 +66,7 @@ export type WSEventType =
 
 export interface WSEvent {
   type: WSEventType
-  data: any
+  data: unknown
 }
 
 export interface MessageNewEvent extends WSEvent {
@@ -103,33 +103,35 @@ export interface ChatState {
   conversations: Conversation[]
   currentConversationId: string | null
   conversationsLoading: boolean
-  
+
   // Messages
   messages: Record<string, Message[]> // Key: conversationId
   messagesLoading: boolean
-  
+
   // Notifications
   notifications: ChatNotification[]
   unreadNotificationCount: number
-  
+
   // UI State
   selectedTab: 'all' | 'unread' | 'read'
   searchQuery: string
   typingUsers: Record<string, string[]> // Key: conversationId, Value: userIds
-  
+
   // WebSocket
   wsConnected: boolean
-  
+
   // Error
   error: string | null
 }
 
-// Message type enum for backend (numbers)
-export enum MessageType {
-  TEXT = 1,
-  IMAGE = 2,
-  FILE = 3,
-}
+// Message type constants for backend (numbers)
+export const MessageType = {
+  TEXT: 1,
+  IMAGE: 2,
+  FILE: 3,
+} as const
+
+export type MessageType = typeof MessageType[keyof typeof MessageType]
 
 // Helper function to convert messageType string to number
 export const getMessageTypeNumber = (messageType: 'text' | 'image' | 'file' | undefined): number => {
