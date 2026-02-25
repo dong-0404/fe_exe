@@ -4,6 +4,7 @@ import type {
     CreateTutorProfileStep1Payload,
     UpdateTutorProfileStep2Payload,
     UpdateTutorProfileStep4Payload,
+    UpdateTutorProfilePayload,
     CertificateResponse,
     SubjectsResponse,
     GradesResponse
@@ -191,6 +192,47 @@ export const profileApi = {
             ENDPOINTS.COMPLETE_TUTOR_PROFILE(userId),
             {}
         )
+    },
+
+    // Update tutor profile (for profile management page)
+    updateTutorProfile: async (
+        payload: UpdateTutorProfilePayload,
+        avatar?: File
+    ): Promise<TutorProfileResponse> => {
+        if (avatar) {
+            // Use FormData if avatar is provided
+            const formData = new FormData()
+
+            // Append avatar
+            formData.append('avatar', avatar)
+
+            // Append other fields
+            Object.entries(payload).forEach(([key, value]) => {
+                if (value !== undefined && value !== null) {
+                    if (Array.isArray(value)) {
+                        value.forEach(item => formData.append(key, item.toString()))
+                    } else {
+                        formData.append(key, value.toString())
+                    }
+                }
+            })
+
+            return apiClient.put<TutorProfileResponse>(
+                ENDPOINTS.UPDATE_TUTOR_PROFILE,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+        } else {
+            // Use JSON if no avatar
+            return apiClient.put<TutorProfileResponse>(
+                ENDPOINTS.UPDATE_TUTOR_PROFILE,
+                payload
+            )
+        }
     },
 
     // TODO: Add parent profile methods

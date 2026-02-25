@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Card, Alert, Spinner } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import { ProfileLayout } from '../../layouts/ProfileLayout'
 import { ProfileHeader } from '../../features/profile/components/ProfileHeader'
 import { AvatarUpload } from '../../features/profile/components/AvatarUpload'
 import { getCurrentUser } from '../../features/auth/utils/authHelpers'
 import { UserRole } from '../../features/auth/types'
 import { profileApi } from '../../features/profile/api/profileApi'
+import { routes } from '../../config/routes'
 import type { StudentProfileData } from '../../features/profile/types/studentProfile'
 import './ProfilePage.css'
 
 export const StudentProfilePage = () => {
+    const navigate = useNavigate()
     const currentUser = getCurrentUser()
     const [activeTab, setActiveTab] = useState('profile')
     const [loading, setLoading] = useState(true)
@@ -58,18 +61,23 @@ export const StudentProfilePage = () => {
                         address: profile.address || '',
                         avatar: profile.avatarUrl || ''
                     })
+                } else {
+                    // Không có profile data, redirect về trang setup
+                    navigate(routes.setupStudent, { replace: true })
+                    return
                 }
             } catch (err) {
                 console.error('Load profile error:', err)
-                const errorMessage = err instanceof Error ? err.message : 'Không thể tải thông tin hồ sơ'
-                setError(errorMessage)
+                // Nếu lỗi khi load profile (chưa có profile), redirect về setup
+                navigate(routes.setupStudent, { replace: true })
+                return
             } finally {
                 setLoading(false)
             }
         }
 
         loadProfile()
-    }, [currentUser?.email])
+    }, [currentUser?.email, navigate])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target

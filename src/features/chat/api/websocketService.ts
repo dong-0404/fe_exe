@@ -218,6 +218,32 @@ class WebSocketService {
         return this.socket?.connected || false
     }
 
+    /**
+     * Join a conversation room
+     */
+    joinConversation(conversationId: string): void {
+        if (!this.socket || !this.socket.connected) {
+            console.warn('Cannot join conversation: Socket.io is not connected')
+            return
+        }
+
+        console.log(`🔌 Joining conversation room: ${conversationId}`)
+        this.socket.emit('conversation:join', { conversationId })
+    }
+
+    /**
+     * Leave a conversation room
+     */
+    leaveConversation(conversationId: string): void {
+        if (!this.socket || !this.socket.connected) {
+            console.warn('Cannot leave conversation: Socket.io is not connected')
+            return
+        }
+
+        console.log(`🔌 Leaving conversation room: ${conversationId}`)
+        this.socket.emit('conversation:leave', { conversationId })
+    }
+
     // Private methods
 
     private handleConnect(): void {
