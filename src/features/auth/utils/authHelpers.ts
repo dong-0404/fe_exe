@@ -96,10 +96,10 @@ export const getRedirectPath = (role: number, profileCompleted: boolean): string
     switch (role) {
         case 1: // Student
             return '/profile/student'
-        case 2: // Parent
-            return '/profile/parent'
-        case 3: // Tutor
+        case 2: // Tutor
             return '/profile/tutor'
+        case 3: // Parent
+            return '/profile/parent'
         default:
             return '/'
     }

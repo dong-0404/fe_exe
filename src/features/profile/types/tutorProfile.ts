@@ -156,3 +156,21 @@ export interface GradesResponse {
     message: string
     data: Grade[]
 }
+
+// Update Tutor Profile Payload (for profile management page)
+export interface UpdateTutorProfilePayload {
+    fullName?: string
+    dateOfBirth?: string
+    placeOfBirth?: string
+    gender?: number
+    hourlyRate?: number
+    teachingArea?: string
+    identityNumber?: string
+    schoolName?: string
+    major?: string
+    educationStatus?: number
+    subjects?: string[]
+    grades?: string[]
+    availableDays?: number[]
+    availableTimeSlots?: string[]
+}

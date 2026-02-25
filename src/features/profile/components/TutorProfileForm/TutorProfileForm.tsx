@@ -8,6 +8,7 @@ import { Step2IdentityInfo } from './Step2IdentityInfo'
 import { Step3CertificatesInfo } from './Step3CertificatesInfo'
 import { Step4TeachingInfo } from './Step4TeachingInfo'
 import { getUserRole, getCurrentUser } from '../../../auth/utils/authHelpers'
+import { UserRole } from '../../../auth/types'
 import { routes } from '../../../../config/routes'
 import type {
     BasicInfoFormData,
@@ -72,7 +73,7 @@ export const TutorProfileForm = () => {
 
             // Check role
             const role = getUserRole()
-            if (role !== 3) { // 3 = Tutor
+            if (role !== UserRole.TUTOR) { // 2 = Tutor (Gia sư)
                 // navigate(routes.home, { replace: true })
                 // return
             }
@@ -85,16 +86,17 @@ export const TutorProfileForm = () => {
                     const profile = response.data
 
                     // Check if profile is already completed
-                    if (profile.isProfileComplete || profile.profileStatus === 2) {
-                        // Profile đã hoàn thành, redirect về home
-                        navigate(routes.home, {
-                            replace: true,
-                            state: {
-                                message: 'Hồ sơ của bạn đã được hoàn thành và đang chờ duyệt.',
-                            },
-                        })
-                        return
-                    }
+                    // Allow user to view/edit profile even if completed
+                    // if (profile.isProfileComplete || profile.profileStatus === 2) {
+                    //     // Profile đã hoàn thành, redirect về home
+                    //     navigate(routes.home, {
+                    //         replace: true,
+                    //         state: {
+                    //             message: 'Hồ sơ của bạn đã được hoàn thành và đang chờ duyệt.',
+                    //         },
+                    //     })
+                    //     return
+                    // }
 
                     // Load data Step 1
                     setStep1Data({
