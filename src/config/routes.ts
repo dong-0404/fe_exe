@@ -24,6 +24,16 @@ export const routes = {
     studentProfile: '/profile/student',
     tutorProfile: '/profile/tutor',
     parentProfile: '/profile/parent',
+
+    // Admin routes
+    adminStatistics: '/admin/statistics',
+    adminUsers: '/admin/users',
+    adminTutorDetail: '/admin/users/tutors/:userId',
+    adminParentDetail: '/admin/users/parents/:userId',
+    adminStudentDetail: '/admin/users/students/:userId',
+    adminPosts: '/admin/posts',
+    adminReviews: '/admin/reviews',
+    adminProfile: '/admin/profile',
 } as const
 
 export type RouteKey = keyof typeof routes
