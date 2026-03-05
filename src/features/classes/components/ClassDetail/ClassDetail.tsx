@@ -12,11 +12,6 @@ interface ClassDetailProps {
 
 type SubTab = 'members' | 'schedules'
 
-const formatDate = (dateStr: string) => {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('vi-VN', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' })
-}
-
 const formatJoinDate = (dateStr: string) => {
     const d = new Date(dateStr)
     return d.toLocaleDateString('vi-VN')
@@ -369,7 +364,7 @@ export const ClassDetail = ({ classId, onBack }: ClassDetailProps) => {
                 show={!!selectedScheduleForAttendance}
                 onHide={() => setSelectedScheduleForAttendance(null)}
                 centered
-                size="md"
+                size="lg"
             >
                 <Modal.Header closeButton>
                     <Modal.Title style={{ fontSize: 16 }}>

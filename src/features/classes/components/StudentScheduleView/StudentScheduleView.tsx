@@ -8,7 +8,6 @@ import './StudentScheduleView.css'
 const today = () => new Date().toISOString().split('T')[0]
 const isPast = (date: string) => date < today()
 const isToday = (date: string) => date === today()
-const isFuture = (date: string) => date > today()
 
 /** Giờ hiện tại dạng "HH:mm" (theo múi giờ local) */
 const nowTime = () => {

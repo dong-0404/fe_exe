@@ -75,7 +75,7 @@ export const CreateClassModal = ({ show, onHide, onCreated }: CreateClassModalPr
     }
 
     return (
-        <Modal show={show} onHide={handleClose} centered size="md">
+        <Modal show={show} onHide={handleClose} centered size="lg">
             <Modal.Header closeButton>
                 <Modal.Title style={{ fontSize: '18px', fontWeight: 600 }}>
                     {createdClass ? 'Lớp học đã được tạo!' : 'Tạo lớp học mới'}
