@@ -86,9 +86,12 @@ export const Footer = () => {
                     <div className="footer-logo-section">
                         <div className="d-flex align-items-center gap-2 mb-2">
                             <div className="footer-logo-icon">
-                                <div className="bg-white text-primary rounded d-flex align-items-center justify-content-center fw-bold" style={{ width: '40px', height: '40px' }}>
-                                    T
-                                </div>
+                                <img
+                                    src="/images/logos/logo-tutorlink.png"
+                                    alt="TutorLink"
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                                />
                             </div>
                             <span className="footer-brand">TutorLink</span>
                         </div>

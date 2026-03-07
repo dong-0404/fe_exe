@@ -1,0 +1,10 @@
+/* Main layout header - TutorLink style */
+.main-header-nav-link:hover {
+  opacity: 0.9;
+}
+
+.main-header-login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+  border-color: white !important;
+}

@@ -13,6 +13,7 @@ export const CommunityPage = () => {
         error,
         hasMore,
         loadPosts,
+        setFilters,
         createPost,
         likePost,
         sharePost,
@@ -27,9 +28,9 @@ export const CommunityPage = () => {
     const currentUserId = localStorage.getItem('userId') || undefined
 
     useEffect(() => {
-        // Load initial posts
+        setFilters({})
         loadPosts({ page: 1, limit: 10 })
-    }, [loadPosts])
+    }, [loadPosts, setFilters])
 
     const handleCreatePost = async (data: {
         content: string
@@ -113,8 +114,15 @@ export const CommunityPage = () => {
         <div className="community-page">
             <div className="community-page__container">
                 <div className="community-page__header">
-                    <h1>Cộng đồng</h1>
-                    <p>Chia sẻ, học hỏi và kết nối với cộng đồng</p>
+                    <div className="community-page__header-logo">
+                        <img
+                            src="/images/logos/logo-tutorlink.png"
+                            alt="TutorLink"
+                            onError={(e) => { e.currentTarget.style.display = 'none' }}
+                        />
+                    </div>
+                    <h1>TutorLink Learning Community</h1>
+                    <p>Connecting Knowledge, Empowering Learning</p>
                 </div>
 
                 {/* Create Post Card */}

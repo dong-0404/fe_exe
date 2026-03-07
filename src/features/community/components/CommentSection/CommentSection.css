@@ -73,6 +73,27 @@
   flex-shrink: 0;
 }
 
+.comment-item__avatar-link {
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.comment-item__avatar-link:hover {
+  opacity: 0.85;
+}
+
+.comment-item__author-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.comment-item__author-link:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
 .comment-item__avatar img {
   width: 100%;
   height: 100%;

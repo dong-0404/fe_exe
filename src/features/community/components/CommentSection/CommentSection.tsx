@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { routes } from '../../../../config/routes'
 import type { Comment } from '../../types'
 import { formatTimeAgo } from '../../types'
 import './CommentSection.css'
@@ -167,7 +169,11 @@ const CommentItem = ({
 
     return (
         <div className="comment-item">
-            <div className="comment-item__avatar">
+            <Link
+                to={routes.userProfile.replace(':userId', comment.authorId._id)}
+                state={{ user: comment.authorId }}
+                className="comment-item__avatar comment-item__avatar-link"
+            >
                 {comment.authorId.avatarUrl ? (
                     <img src={comment.authorId.avatarUrl} alt={comment.authorId.fullName} />
                 ) : (
@@ -175,11 +181,17 @@ const CommentItem = ({
                         {comment.authorId.fullName.charAt(0).toUpperCase()}
                     </div>
                 )}
-            </div>
+            </Link>
 
             <div className="comment-item__content">
                 <div className="comment-item__header">
-                    <span className="comment-item__author">{comment.authorId.fullName}</span>
+                    <Link
+                        to={routes.userProfile.replace(':userId', comment.authorId._id)}
+                        state={{ user: comment.authorId }}
+                        className="comment-item__author comment-item__author-link"
+                    >
+                        {comment.authorId.fullName}
+                    </Link>
                     <span className="comment-item__time">{formatTimeAgo(comment.createdAt)}</span>
                 </div>
 

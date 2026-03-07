@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { routes } from '../../../../config/routes'
 import type { Post } from '../../types'
 import { formatTimeAgo, getPostTypeDisplay } from '../../types'
 import { PostActions } from '../PostActions'
@@ -92,7 +94,11 @@ export const PostCard = ({
   return (
     <div className="post-card">
       <div className="post-card__header">
-        <div className="post-card__author">
+        <Link
+          to={routes.userProfile.replace(':userId', post.authorId._id)}
+          state={{ user: post.authorId }}
+          className="post-card__author"
+        >
           {post.authorId.avatarUrl ? (
             <img
               src={post.authorId.avatarUrl}
@@ -111,7 +117,7 @@ export const PostCard = ({
               <span className="post-card__time">{formatTimeAgo(post.createdAt)}</span>
             </div>
           </div>
-        </div>
+        </Link>
         {isAuthor && (
           <div className="post-card__menu">
             {onEdit && (

@@ -9,6 +9,7 @@ export const routes = {
     postLesson: '/post-lesson',
     schedule: '/schedule',
     community: '/community',
+    userProfile: '/user/:userId',
     chat: '/chat',
     login: '/login',
     register: '/register',

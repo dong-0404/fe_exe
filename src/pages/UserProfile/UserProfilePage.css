@@ -1,0 +1,144 @@
+.user-profile-page {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding-bottom: 2rem;
+}
+
+.user-profile-cover {
+  height: 180px;
+  background: linear-gradient(135deg, #7f1d1d 0%, #1f2937 100%);
+  width: 100%;
+}
+
+.user-profile-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  margin-top: -70px;
+}
+
+.user-profile-header {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.user-profile-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.user-profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-profile-avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  border: 4px solid #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.user-profile-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.user-profile-message-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.user-profile-message-btn:hover {
+  background: #1d4ed8;
+}
+
+.user-profile-posts {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.user-profile-posts-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 1rem;
+}
+
+.user-profile-loading,
+.user-profile-error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.user-profile-error {
+  color: #dc2626;
+}
+
+@media (max-width: 576px) {
+  .user-profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-profile-info {
+    align-items: center;
+  }
+
+  .user-profile-message-btn {
+    align-self: center;
+  }
+
+  .user-profile-avatar,
+  .user-profile-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  .user-profile-content {
+    margin-top: -50px;
+  }
+}

@@ -17,6 +17,13 @@
   display: flex;
   gap: 12px;
   flex: 1;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.post-card__author:hover {
+  opacity: 0.85;
 }
 
 .post-card__avatar {

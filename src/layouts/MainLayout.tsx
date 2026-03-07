@@ -2,6 +2,7 @@ import { Outlet, Link, useNavigate } from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import { routes } from '../config/routes'
 import { Footer } from './Footer'
+import './MainLayout.css'
 import { getCurrentUser, isAuthenticated, clearAuthData } from '../features/auth/utils/authHelpers'
 import { NotificationBell } from '../features/chat/components/NotificationBell'
 
@@ -24,21 +25,32 @@ export const MainLayout = () => {
         <div className="container">
           <div className="d-flex justify-content-between align-items-center py-3">
             <Link to={routes.home} className="text-white text-decoration-none d-flex align-items-center gap-2">
-              <div className="bg-white text-primary rounded d-flex align-items-center justify-content-center fw-bold" style={{ width: '40px', height: '40px' }}>
-                H
+              <div
+                className="bg-white rounded d-flex align-items-center justify-content-center overflow-hidden"
+                style={{ width: 36, height: 36 }}
+              >
+                <img
+                  src="/images/logos/logo-tutorlink.png"
+                  alt="TutorLink"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
               </div>
-              <span className="fs-4 fw-bold">Bridgy</span>
+              <span className="fs-5 fw-bold" style={{ color: 'rgba(255,255,255,0.95)' }}>TutorLink</span>
             </Link>
-            <nav className="d-flex gap-4">
-              <Link to={routes.home} className="text-white text-decoration-none">Trang chủ</Link>
-              <Link to={routes.findTutor} className="text-white text-decoration-none">Tìm kiếm gia sư</Link>
-              <Link to={routes.community} className="text-white text-decoration-none">Post bài</Link>
-              <Link to={routes.schedule} className="text-white text-decoration-none">Lịch học</Link>
+            <nav className="d-flex align-items-center gap-0">
+              <Link to={routes.home} className="main-header-nav-link text-white text-decoration-none px-3">Trang chủ</Link>
+              <span className="main-header-nav-sep" style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.5)' }} />
+              <Link to={routes.findTutor} className="main-header-nav-link text-white text-decoration-none px-3">Tìm kiếm gia sư</Link>
+              <span className="main-header-nav-sep" style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.5)' }} />
+              <Link to={routes.community} className="main-header-nav-link text-white text-decoration-none px-3">Post bài</Link>
+              <span className="main-header-nav-sep" style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.5)' }} />
+              <Link to={routes.schedule} className="main-header-nav-link text-white text-decoration-none px-3">Lịch học</Link>
             </nav>
 
             {/* Conditional: Login button hoặc User profile */}
             {!isLoggedIn ? (
-              <Link to={routes.login} className="bg-white text-primary px-4 py-2 rounded text-decoration-none fw-medium d-flex align-items-center gap-2">
+              <Link to={routes.login} className="main-header-login-btn border border-2 border-white bg-transparent text-white px-4 py-2 rounded text-decoration-none fw-medium d-flex align-items-center gap-2">
                 <span>Đăng nhập</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor" />
