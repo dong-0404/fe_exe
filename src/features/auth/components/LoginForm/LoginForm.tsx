@@ -56,7 +56,7 @@ export const LoginForm = () => {
                 // Cast user data với đúng type
                 const userData = {
                     ...response.data.user,
-                    role: response.data.user.role as 1 | 2 | 3
+                    role: response.data.user.role as 1 | 2 | 3 | 4
                 }
 
                 // Lưu thông tin authentication

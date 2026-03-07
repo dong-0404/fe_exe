@@ -1,0 +1,8 @@
+export { AdminStatisticsPage } from './AdminStatisticsPage'
+export { AdminUserManagementPage } from './AdminUserManagementPage'
+export { AdminTutorDetailPage } from './AdminTutorDetailPage'
+export { AdminParentDetailPage } from './AdminParentDetailPage'
+export { AdminStudentDetailPage } from './AdminStudentDetailPage'
+export { AdminPostManagementPage } from './AdminPostManagementPage'
+export { AdminReviewManagementPage } from './AdminReviewManagementPage'
+export { AdminProfilePage } from './AdminProfilePage'

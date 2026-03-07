@@ -88,6 +88,11 @@ export const clearAuthData = () => {
  * Lấy URL redirect dựa trên role và trạng thái profile
  */
 export const getRedirectPath = (role: number, profileCompleted: boolean): string => {
+    // Admin luôn vào dashboard riêng
+    if (role === 4) {
+        return '/admin/statistics'
+    }
+
     if (profileCompleted) {
         return '/' // Home page
     }
