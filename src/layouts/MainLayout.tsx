@@ -44,8 +44,6 @@ export const MainLayout = () => {
               <Link to={routes.findTutor} className="main-header-nav-link text-white text-decoration-none px-3">Tìm kiếm gia sư</Link>
               <span className="main-header-nav-sep" style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.5)' }} />
               <Link to={routes.community} className="main-header-nav-link text-white text-decoration-none px-3">Post bài</Link>
-              <span className="main-header-nav-sep" style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.5)' }} />
-              <Link to={routes.schedule} className="main-header-nav-link text-white text-decoration-none px-3">Lịch học</Link>
             </nav>
 
             {/* Conditional: Login button hoặc User profile */}

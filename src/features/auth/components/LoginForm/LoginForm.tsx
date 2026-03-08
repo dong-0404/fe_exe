@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Form, InputGroup, Button, Alert } from 'react-bootstrap'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { authApi } from '../../api/authApi'
 import { routes } from '../../../../config/routes'
 import { saveAuthData, getRedirectPath } from '../../utils/authHelpers'
@@ -176,9 +176,9 @@ export const LoginForm = () => {
                             onChange={(e) => setRememberMe(e.target.checked)}
                             className="remember-me"
                         />
-                        <a href="/forgot-password" className="forgot-password">
+                        <Link to={routes.forgotPassword} className="forgot-password">
                             Quên mật khẩu?
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Submit Button */}

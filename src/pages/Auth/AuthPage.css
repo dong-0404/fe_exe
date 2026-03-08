@@ -4,10 +4,243 @@
   background-color: #f0f2f5;
 }
 
+/* Forgot Password Form - Layout giống ảnh mẫu */
+.forgot-password-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.forgot-password-form-wrapper {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.forgot-password-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.forgot-password-description {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.forgot-password-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  display: block;
+  text-align: left;
+}
+
+.forgot-password-input {
+  height: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  background: #fff;
+}
+
+.forgot-password-input:focus {
+  border-color: #0066FF;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.15);
+  outline: none;
+}
+
+.forgot-password-input::placeholder {
+  color: #9ca3af;
+}
+
+.forgot-password-actions {
+  display: flex;
+  gap: 100px;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.forgot-password-btn-back {
+  border: 1px solid #0066FF !important;
+  color: #0066FF !important;
+  background: #fff;
+  padding: 12px 50px;
+  min-width: 140px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.forgot-password-btn-back:hover {
+  background: rgba(0, 102, 255, 0.05);
+  border-color: #0066FF;
+  color: #0066FF;
+}
+
+.forgot-password-btn-confirm {
+  background: #0066FF;
+  border: none;
+  color: #fff;
+  padding: 12px 50px;
+  min-width: 140px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.forgot-password-btn-confirm:hover {
+  background: #0052CC;
+  color: #fff;
+}
+
+.forgot-password-link {
+  text-align: center;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.forgot-password-link-text {
+  color: #0066FF;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.forgot-password-link-text:hover {
+  color: #0052CC;
+  text-decoration: underline;
+}
+
+/* New Password Form - Tạo mật khẩu mới (theo mẫu) */
+.new-password-form {
+  text-align: left;
+  max-width: 420px;
+}
+
+.new-password-form .forgot-password-title {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.new-password-form .form-group,
+.new-password-form .mb-3,
+.new-password-form .mb-4 {
+  text-align: left;
+}
+
+.new-password-form .forgot-password-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.new-password-form .input-group {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+}
+
+.new-password-form .input-group .form-control {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.new-password-form .input-group .form-control:focus {
+  box-shadow: none !important;
+}
+
+.new-password-form .input-group .btn {
+  border: none !important;
+  border-left: 1px solid #e5e7eb !important;
+  background: #fff !important;
+  color: #6b7280;
+}
+
+.new-password-form .input-group .btn:hover {
+  background: #f9fafb !important;
+  color: #374151;
+}
+
+.new-password-form .password-requirement-note {
+  display: flex;
+  align-items: flex-start;
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.new-password-form .password-requirement-note svg {
+  flex-shrink: 0;
+  margin-right: 6px;
+  margin-top: 2px;
+}
+
+.new-password-form .forgot-password-actions {
+  margin-top: 28px;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.new-password-form .forgot-password-btn-back {
+  border: 2px solid #0066cc !important;
+  color: #0066cc !important;
+  background: #fff !important;
+}
+
+.new-password-form .forgot-password-btn-confirm {
+  background: #0066cc !important;
+  border: 2px solid #0066cc !important;
+  color: #fff !important;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .auth-page {
     flex-direction: column;
+  }
+
+  .forgot-password-form-container {
+    padding: 40px 24px;
+  }
+
+  .forgot-password-title {
+    font-size: 28px;
+  }
+
+  .forgot-password-form-wrapper {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .forgot-password-form-container {
+    padding: 30px 20px;
+  }
+
+  .forgot-password-title {
+    font-size: 24px;
+  }
+
+  .forgot-password-actions {
+    flex-direction: column;
+  }
+
+  .forgot-password-btn-back,
+  .forgot-password-btn-confirm {
+    width: 100%;
   }
 }
 

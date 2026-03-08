@@ -11,7 +11,7 @@ import { TutorDetailPage } from '../pages/TutorDetail'
 import { CommunityPage } from '../pages/Community'
 import { UserProfilePage } from '../pages/UserProfile'
 import { ChatPage } from '../pages/Chat'
-import { LoginPage, RegisterPage, OTPVerificationPage } from '../pages/Auth'
+import { LoginPage, RegisterPage, OTPVerificationPage, ForgotPasswordPage } from '../pages/Auth'
 import {
     StudentProfilePage,
     TutorProfilePage,
@@ -113,6 +113,7 @@ export const AppRoutes = () => {
             </Route>
 
             <Route path={routes.login} element={<LoginPage />} />
+            <Route path={routes.forgotPassword} element={<ForgotPasswordPage />} />
             <Route path={routes.register} element={<RegisterPage />} />
             <Route path={routes.otpVerification} element={<OTPVerificationPage />} />
 

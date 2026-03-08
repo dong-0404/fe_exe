@@ -81,7 +81,7 @@ export const getErrorMessage = (error: unknown): string => {
         case 429:
             return 'Bạn đã thực hiện quá nhiều yêu cầu. Vui lòng thử lại sau'
         case 500:
-            return 'Lỗi máy chủ. Vui lòng thử lại sau'
+            return apiError.message || 'Lỗi máy chủ. Vui lòng thử lại sau'
         case 503:
             return 'Hệ thống đang bảo trì. Vui lòng thử lại sau'
         default:

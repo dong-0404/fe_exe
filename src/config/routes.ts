@@ -12,6 +12,7 @@ export const routes = {
     userProfile: '/user/:userId',
     chat: '/chat',
     login: '/login',
+    forgotPassword: '/forgot-password',
     register: '/register',
     otpVerification: '/verify-otp',
 

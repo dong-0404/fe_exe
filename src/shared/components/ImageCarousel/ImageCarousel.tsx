@@ -37,32 +37,26 @@ export const ImageCarousel = ({
             >
                 {images.map((image, index) => (
                     <Carousel.Item key={index}>
-                        {image.startsWith('data:') || image.startsWith('http') ? (
-                            <div className="position-relative w-100 h-100">
-                                <img
-                                    className="d-block w-100"
-                                    src={image}
-                                    alt={`Slide ${index + 1}`}
-                                    style={{
-                                        objectFit: 'cover',
-                                        height: '70vh',
-                                        width: '100%'
-                                    }}
-                                />
-                                <div
-                                    className="position-absolute bottom-0 start-0 end-0"
-                                    style={{
-                                        background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)',
-                                        height: '80px',
-                                        pointerEvents: 'none'
-                                    }}
-                                />
-                            </div>
-                        ) : (
-                            <div className="d-flex align-items-center justify-content-center bg-light" style={{ height: '70vh' }}>
-                                <p className="text-muted">Image {index + 1}</p>
-                            </div>
-                        )}
+                        <div className="position-relative w-100 h-100">
+                            <img
+                                className="d-block w-100"
+                                src={image}
+                                alt={`Slide ${index + 1}`}
+                                style={{
+                                    objectFit: 'cover',
+                                    height: '70vh',
+                                    width: '100%'
+                                }}
+                            />
+                            <div
+                                className="position-absolute bottom-0 start-0 end-0"
+                                style={{
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)',
+                                    height: '80px',
+                                    pointerEvents: 'none'
+                                }}
+                            />
+                        </div>
                     </Carousel.Item>
                 ))}
             </Carousel>

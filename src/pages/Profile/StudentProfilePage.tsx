@@ -3,6 +3,7 @@ import { Row, Col, Form, Button, Card, Alert, Spinner } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { ProfileLayout } from '../../layouts/ProfileLayout'
 import { ProfileHeader } from '../../features/profile/components/ProfileHeader'
+import { ChangePasswordForm } from '../../features/profile/components/ChangePasswordForm'
 import { AvatarUpload } from '../../features/profile/components/AvatarUpload'
 import { getCurrentUser } from '../../features/auth/utils/authHelpers'
 import { UserRole } from '../../features/auth/types'
@@ -352,10 +353,9 @@ export const StudentProfilePage = () => {
                         title="Đổi mật khẩu"
                         description="Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác"
                     />
-                    {/* Password change form will be here */}
                     <Card className="profile-card">
                         <Card.Body>
-                            <p>Đổi mật khẩu content here...</p>
+                            <ChangePasswordForm />
                         </Card.Body>
                     </Card>
                 </div>

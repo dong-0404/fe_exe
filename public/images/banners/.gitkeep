@@ -1,0 +1,3 @@
+# Đặt ảnh banner trang chủ vào đây
+# Ví dụ: banner-1.jpg, banner-2.jpg, banner-3.jpg
+# Sau đó sửa HeroBanner.tsx để dùng đường dẫn: /images/banners/banner-1.jpg

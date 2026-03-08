@@ -6,6 +6,10 @@ const ENDPOINTS = {
     VERIFY_OTP: '/users/verify-otp',
     LOGIN: '/auth/login',
     RESEND_OTP: '/users/resend-otp',
+    FORGOT_PASSWORD: '/users/forgot-password',
+    RESET_PASSWORD: '/users/reset-password',
+    RESEND_FORGOT_PASSWORD_OTP: '/users/resend-forgot-password-otp',
+    CHANGE_PASSWORD: '/auth/change-password',
 } as const
 
 // Request/Response Types
@@ -97,6 +101,34 @@ export const authApi = {
     login: async (payload: LoginPayload): Promise<LoginResponse> => {
         return apiClient.post<LoginResponse>(
             ENDPOINTS.LOGIN,
+            payload
+        )
+    },
+
+    forgotPassword: async (email: string) => {
+        return apiClient.post<{ success: boolean; message: string }>(
+            ENDPOINTS.FORGOT_PASSWORD,
+            { email }
+        )
+    },
+
+    resetPassword: async (payload: { email: string; otp: string; newPassword: string }) => {
+        return apiClient.post<{ success: boolean; message: string }>(
+            ENDPOINTS.RESET_PASSWORD,
+            payload
+        )
+    },
+
+    resendForgotPasswordOtp: async (email: string) => {
+        return apiClient.post<{ success: boolean; message: string }>(
+            ENDPOINTS.RESEND_FORGOT_PASSWORD_OTP,
+            { email }
+        )
+    },
+
+    changePassword: async (payload: { currentPassword: string; newPassword: string }) => {
+        return apiClient.post<{ success: boolean; message: string }>(
+            ENDPOINTS.CHANGE_PASSWORD,
             payload
         )
     },
