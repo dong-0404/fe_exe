@@ -51,8 +51,17 @@ export const CreateClassModal = ({ show, onHide, onCreated }: CreateClassModalPr
                 setCreatedClass(res.data)
                 onCreated(res.data)
             }
-        } catch {
-            setError('Tạo lớp thất bại, vui lòng thử lại')
+        } catch (err: unknown) {
+            // Hiển thị lỗi chi tiết hơn từ API nếu có
+            if (typeof err === 'object' && err !== null && 'response' in err) {
+                const anyErr = err as { response?: { data?: { message?: string } } }
+                const apiMessage = anyErr.response?.data?.message
+                setError(apiMessage || 'Tạo lớp thất bại, vui lòng thử lại')
+            } else if (err instanceof Error) {
+                setError(err.message || 'Tạo lớp thất bại, vui lòng thử lại')
+            } else {
+                setError('Tạo lớp thất bại, vui lòng thử lại')
+            }
         } finally {
             setLoading(false)
         }
