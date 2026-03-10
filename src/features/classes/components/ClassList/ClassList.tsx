@@ -22,7 +22,16 @@ export const ClassList = ({ onSelectClass }: ClassListProps) => {
             setError(null)
             const res = await classesApi.getMyClasses()
             if (res.success) setClasses(res.data)
-        } catch {
+        } catch (err: unknown) {
+            // Nếu backend trả về thông báo "chưa được duyệt" thì hiển thị đúng message cho gia sư
+            if (typeof err === 'object' && err !== null && 'response' in err) {
+                const anyErr = err as { response?: { data?: { message?: string } } }
+                const apiMessage = anyErr.response?.data?.message
+                if (apiMessage) {
+                    setError(apiMessage)
+                    return
+                }
+            }
             setError('Không thể tải danh sách lớp học')
         } finally {
             setLoading(false)
