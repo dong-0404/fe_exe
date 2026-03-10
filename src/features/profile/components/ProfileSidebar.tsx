@@ -19,7 +19,7 @@ export const ProfileSidebar = ({ role, activeTab, onTabChange }: ProfileSidebarP
             { id: 'password', label: 'Đổi mật khẩu', icon: '🔑', section: 'account' }
         ]
 
-        const roleSpecificItems = {
+        const roleSpecificItems: Partial<Record<UserRole, { id: string; label: string; icon: string; section: string }[]>> = {
             [UserRole.STUDENT]: [
                 { id: 'schedule', label: 'Quản lý lịch học', icon: '📋', section: 'other' }
             ],
