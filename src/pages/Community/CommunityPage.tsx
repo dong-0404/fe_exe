@@ -24,8 +24,10 @@ export const CommunityPage = () => {
         loadMore
     } = useCommunity()
 
-    // Get current user ID from localStorage (set during login)
+    // Get current user info from localStorage (set during login / profile)
     const currentUserId = localStorage.getItem('userId') || undefined
+    const userAvatarUrl = typeof window !== 'undefined' ? localStorage.getItem('userAvatarUrl') || '' : ''
+    const userEmail = typeof window !== 'undefined' ? localStorage.getItem('userEmail') || '' : ''
 
     useEffect(() => {
         setFilters({})
@@ -129,9 +131,16 @@ export const CommunityPage = () => {
                 <div className="community-page__create-card">
                     <div className="community-page__create-top">
                         <div className="community-page__user-avatar">
-                            <div className="community-page__avatar-placeholder">
-                                {localStorage.getItem('userEmail')?.charAt(0).toUpperCase() || 'U'}
-                            </div>
+                            {userAvatarUrl ? (
+                                <img
+                                    src={userAvatarUrl}
+                                    alt={userEmail || 'Avatar'}
+                                />
+                            ) : (
+                                <div className="community-page__avatar-placeholder">
+                                    {userEmail?.charAt(0).toUpperCase() || 'U'}
+                                </div>
+                            )}
                         </div>
                         <button
                             className="community-page__create-input"

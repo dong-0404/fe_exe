@@ -72,11 +72,20 @@ export const TutorCard = ({ tutor, onRegister, onViewDetails }: TutorCardProps) 
                 overflow: 'hidden'
               }}
             >
-              <svg width="80%" height="80%" viewBox="0 0 200 200" fill="none">
-                <circle cx="100" cy="100" r="100" fill="#D0D0D0" />
-                <circle cx="100" cy="70" r="30" fill="#999" />
-                <path d="M40 160 Q40 120 100 120 Q160 120 160 160" fill="#999" />
-              </svg>
+              {(tutor as any).avatarUrl || tutor.avatar ? (
+                <img
+                  src={(tutor as any).avatarUrl || tutor.avatar!}
+                  alt={tutor.fullName || 'Avatar gia sư'}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
+              ) : (
+                <svg width="80%" height="80%" viewBox="0 0 200 200" fill="none">
+                  <circle cx="100" cy="100" r="100" fill="#D0D0D0" />
+                  <circle cx="100" cy="70" r="30" fill="#999" />
+                  <path d="M40 160 Q40 120 100 120 Q160 120 160 160" fill="#999" />
+                </svg>
+              )}
             </div>
             {/* Logo placeholder ở góc dưới trái */}
             <div

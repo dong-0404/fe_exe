@@ -63,6 +63,14 @@ export const StudentProfilePage = () => {
                         address: profile.address || '',
                         avatar: profile.avatarUrl || ''
                     })
+
+                    // Lưu avatar vào localStorage để dùng chung cho header, sidebar, cộng đồng
+                    if (profile.avatarUrl) {
+                        localStorage.setItem('userAvatarUrl', profile.avatarUrl)
+                        if (typeof window !== 'undefined') {
+                            window.dispatchEvent(new Event('userAvatarUpdated'))
+                        }
+                    }
                 } else {
                     // Không có profile data, redirect về trang setup
                     navigate(routes.setupStudent, { replace: true })
@@ -114,7 +122,13 @@ export const StudentProfilePage = () => {
 
                 // Update avatar preview if uploaded
                 if (response.data.avatarUrl) {
-                    setFormData(prev => ({ ...prev, avatar: response.data.avatarUrl || '' }))
+                    const newAvatar = response.data.avatarUrl || ''
+                    setFormData(prev => ({ ...prev, avatar: newAvatar }))
+                    // Cập nhật avatar dùng chung trong toàn app
+                    localStorage.setItem('userAvatarUrl', newAvatar)
+                    if (typeof window !== 'undefined') {
+                        window.dispatchEvent(new Event('userAvatarUpdated'))
+                    }
                 }
 
                 // Clear avatar file after successful upload

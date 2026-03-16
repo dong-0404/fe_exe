@@ -128,13 +128,21 @@ export const TutorDetailPage = () => {
                         {/* Left: Avatar */}
                         <div className="col-md-4 col-lg-3">
                             <div className="tutor-avatar-wrapper">
-                                <div className="tutor-avatar-placeholder">
-                                    <svg width="80%" height="80%" viewBox="0 0 200 200" fill="none">
-                                        <circle cx="100" cy="100" r="100" fill="#D0D0D0" />
-                                        <circle cx="100" cy="70" r="30" fill="#999" />
-                                        <path d="M40 160 Q40 120 100 120 Q160 120 160 160" fill="#999" />
-                                    </svg>
-                                </div>
+                                {tutorDetail.avatarUrl ? (
+                                    <img
+                                        src={tutorDetail.avatarUrl}
+                                        alt={tutorDetail.fullName}
+                                        className="tutor-avatar"
+                                    />
+                                ) : (
+                                    <div className="tutor-avatar-placeholder">
+                                        <svg width="80%" height="80%" viewBox="0 0 200 200" fill="none">
+                                            <circle cx="100" cy="100" r="100" fill="#D0D0D0" />
+                                            <circle cx="100" cy="70" r="30" fill="#999" />
+                                            <path d="M40 160 Q40 120 100 120 Q160 120 160 160" fill="#999" />
+                                        </svg>
+                                    </div>
+                                )}
                                 <div className="badge-logo">
                                     <span>Logo</span>
                                 </div>

@@ -2,14 +2,23 @@ import { useNavigate } from 'react-router-dom'
 import { TutorCard } from './TutorCard'
 import { Pagination } from './Pagination'
 import { useFindTutor } from '../hooks/useFindTutor'
+import { useStartChat } from '../../chat/hooks'
 
 export const TutorList = () => {
   const navigate = useNavigate()
   const { tutors, totalPages, currentPage, handlePageChange } = useFindTutor()
+  const { startChat } = useStartChat()
 
   const handleRegister = (tutorId: string) => {
-    console.log('Register for tutor:', tutorId)
-    // TODO: Implement registration logic
+    const tutor = tutors.find(t => t._id === tutorId)
+    const targetUserId = tutor?.userId?._id
+    if (!targetUserId) {
+      console.warn('Tutor does not have userId, cannot start chat')
+      return
+    }
+
+    // Mở chat với gia sư và gửi sẵn 1 tin nhắn đăng ký học
+    void startChat(targetUserId, 'Tôi muốn đăng kí học')
   }
 
   const handleViewDetails = (tutorId: string) => {

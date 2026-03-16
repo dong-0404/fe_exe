@@ -144,7 +144,7 @@ export const TutorProfilePage = () => {
 
     // Update form data when tutorProfile is loaded
     useEffect(() => {
-        if (tutorProfile) {
+            if (tutorProfile) {
             // Format date for input[type="date"]
             const formattedDate = tutorProfile.dateOfBirth
                 ? new Date(tutorProfile.dateOfBirth).toISOString().split('T')[0]
@@ -180,6 +180,14 @@ export const TutorProfilePage = () => {
                 availableTimeSlots: tutorProfile.availableTimeSlots || [],
                 avatar: tutorProfile.avatarUrl || ''
             })
+
+            // Lưu avatar vào localStorage để dùng chung cho header, sidebar, cộng đồng
+            if (tutorProfile.avatarUrl) {
+                localStorage.setItem('userAvatarUrl', tutorProfile.avatarUrl)
+                if (typeof window !== 'undefined') {
+                    window.dispatchEvent(new Event('userAvatarUpdated'))
+                }
+            }
         }
     }, [tutorProfile, currentUser?.email, currentUser?.phone])
 
@@ -285,6 +293,13 @@ export const TutorProfilePage = () => {
                         const tutorDetailResponse = await tutorApi.getTutorDetail(currentTutorId)
                         if (tutorDetailResponse.success && tutorDetailResponse.data) {
                             setTutorProfile(tutorDetailResponse.data)
+                            // Cập nhật avatarUrl chung nếu có
+                            if (tutorDetailResponse.data.avatarUrl) {
+                                localStorage.setItem('userAvatarUrl', tutorDetailResponse.data.avatarUrl)
+                                if (typeof window !== 'undefined') {
+                                    window.dispatchEvent(new Event('userAvatarUpdated'))
+                                }
+                            }
                         }
                     } else {
                         // Nếu không có tutor ID, reload lại từ đầu
@@ -293,6 +308,12 @@ export const TutorProfilePage = () => {
                             const tutorDetailResponse = await tutorApi.getTutorDetail(profileResponse.data._id)
                             if (tutorDetailResponse.success && tutorDetailResponse.data) {
                                 setTutorProfile(tutorDetailResponse.data)
+                                if (tutorDetailResponse.data.avatarUrl) {
+                                    localStorage.setItem('userAvatarUrl', tutorDetailResponse.data.avatarUrl)
+                                    if (typeof window !== 'undefined') {
+                                        window.dispatchEvent(new Event('userAvatarUpdated'))
+                                    }
+                                }
                             }
                         }
                     }
@@ -863,20 +884,6 @@ export const TutorProfilePage = () => {
                             }}
                         />
                     </div>
-                </div>
-            )}
-
-            {activeTab === 'earnings' && (
-                <div>
-                    <ProfileHeader
-                        title="Thống kê thu nhập"
-                        description="Xem thống kê thu nhập của bạn"
-                    />
-                    <Card className="profile-card">
-                        <Card.Body>
-                            <p>Thống kê thu nhập content here...</p>
-                        </Card.Body>
-                    </Card>
                 </div>
             )}
 

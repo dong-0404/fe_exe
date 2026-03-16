@@ -11,6 +11,7 @@ interface ProfileSidebarProps {
 
 export const ProfileSidebar = ({ role, activeTab, onTabChange }: ProfileSidebarProps) => {
     const currentUser = getCurrentUser()
+    const avatarUrl = typeof window !== 'undefined' ? localStorage.getItem('userAvatarUrl') || '' : ''
 
     // Menu items theo role
     const getMenuItems = () => {
@@ -26,8 +27,7 @@ export const ProfileSidebar = ({ role, activeTab, onTabChange }: ProfileSidebarP
             [UserRole.TUTOR]: [
                 { id: 'classes', label: 'Lớp học', icon: '📚', section: 'other' },
                 { id: 'schedule', label: 'Quản lý lịch dạy', icon: '📅', section: 'other' },
-                { id: 'students', label: 'Quản lý học viên', icon: '👥', section: 'other' },
-                { id: 'earnings', label: 'Thống kê thu nhập', icon: '💰', section: 'other' }
+                { id: 'students', label: 'Quản lý học viên', icon: '👥', section: 'other' }
             ],
             [UserRole.PARENT]: [
                 { id: 'children', label: 'Quản lý con cái', icon: '👨‍👩‍👧', section: 'other' },
@@ -47,13 +47,17 @@ export const ProfileSidebar = ({ role, activeTab, onTabChange }: ProfileSidebarP
             {/* User Info */}
             <div className="sidebar-user-info">
                 <div className="user-avatar-wrapper">
-                    <div className="user-avatar">
-                        <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
-                            <circle cx="50" cy="50" r="50" fill="#E0E7FF" />
-                            <circle cx="50" cy="35" r="15" fill="#6366F1" />
-                            <path d="M20 75 Q20 55 50 55 Q80 55 80 75" fill="#6366F1" />
-                        </svg>
-                    </div>
+                    {avatarUrl ? (
+                        <img src={avatarUrl} alt={currentUser?.email || 'Avatar'} className="user-avatar" />
+                    ) : (
+                        <div className="user-avatar">
+                            <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="50" fill="#E0E7FF" />
+                                <circle cx="50" cy="35" r="15" fill="#6366F1" />
+                                <path d="M20 75 Q20 55 50 55 Q80 55 80 75" fill="#6366F1" />
+                            </svg>
+                        </div>
+                    )}
                 </div>
                 <h6 className="user-name">{currentUser?.email || 'User'}</h6>
                 <button className="btn-edit-profile">

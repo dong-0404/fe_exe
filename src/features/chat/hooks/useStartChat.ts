@@ -5,7 +5,7 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
-import { findOrCreateConversation } from '../chatThunks'
+import { findOrCreateConversation, sendMessage } from '../chatThunks'
 import { routes } from '../../../config/routes'
 import { getCurrentUser } from '../../auth/utils/authHelpers'
 
@@ -13,7 +13,10 @@ export const useStartChat = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   
-  const startChat = useCallback(async (targetUserId: string) => {
+  /**
+   * Bắt đầu chat với 1 user và (tuỳ chọn) gửi luôn tin nhắn đầu tiên.
+   */
+  const startChat = useCallback(async (targetUserId: string, initialMessage?: string) => {
     try {
       const currentUser = getCurrentUser()
       
@@ -39,8 +42,19 @@ export const useStartChat = () => {
       const conversation = await dispatch(
         findOrCreateConversation(targetUserId)
       ).unwrap()
-      
-      // Navigate to chat page with conversation
+
+      // Nếu có tin nhắn khởi tạo, gửi ngay sau khi có conversation
+      if (initialMessage && initialMessage.trim()) {
+        await dispatch(
+          sendMessage({
+            conversationId: conversation._id,
+            content: initialMessage.trim(),
+            messageType: 'text',
+          })
+        ).unwrap()
+      }
+
+      // Điều hướng sang trang chat với conversation tương ứng
       navigate(routes.chat, {
         state: { conversationId: conversation._id }
       })

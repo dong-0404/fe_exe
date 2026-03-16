@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import type { CertificatesInfoFormData } from '../../types/tutorProfile'
 
@@ -9,7 +9,13 @@ interface Step3CertificatesInfoProps {
 }
 
 export const Step3CertificatesInfo = ({ data, onChange, errors }: Step3CertificatesInfoProps) => {
-    const [previewUrls, setPreviewUrls] = useState<string[]>([])
+    const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+    // Tạo URL preview cho các file hiện có mỗi lần render
+    const previewUrls = useMemo(
+        () => data.images.map((file) => URL.createObjectURL(file)),
+        [data.images]
+    )
 
     const handleChange = (field: keyof CertificatesInfoFormData, value: string | number) => {
         onChange({ ...data, [field]: value })
@@ -41,23 +47,13 @@ export const Step3CertificatesInfo = ({ data, onChange, errors }: Step3Certifica
         const updatedFiles = [...data.images, ...filesToAdd]
         onChange({ ...data, images: updatedFiles })
 
-        // Create preview URLs for new files and append to existing previews
-        const newUrls = filesToAdd.map((file) => URL.createObjectURL(file))
-        setPreviewUrls([...previewUrls, ...newUrls])
-
         // Reset input để có thể chọn cùng file lại
         e.target.value = ''
     }
 
     const handleRemoveFile = (index: number) => {
         const newFiles = data.images.filter((_, i) => i !== index)
-        const newUrls = previewUrls.filter((_, i) => i !== index)
-
-        // Revoke URL to free memory
-        URL.revokeObjectURL(previewUrls[index])
-
         onChange({ ...data, images: newFiles })
-        setPreviewUrls(newUrls)
     }
 
     return (
@@ -150,12 +146,19 @@ export const Step3CertificatesInfo = ({ data, onChange, errors }: Step3Certifica
                         {/* Preview existing images */}
                         {previewUrls.map((url, index) => (
                             <div key={index} className="certificate-card">
-                                <div className="certificate-preview">
+                                <div
+                                    className="certificate-preview"
+                                    onClick={() => setSelectedImage(url)}
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     <img src={url} alt={`Certificate ${index + 1}`} className="certificate-image" />
                                     <button
                                         type="button"
                                         className="remove-certificate"
-                                        onClick={() => handleRemoveFile(index)}
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            handleRemoveFile(index)
+                                        }}
                                         title="Xóa ảnh"
                                     >
                                         ×
@@ -194,6 +197,23 @@ export const Step3CertificatesInfo = ({ data, onChange, errors }: Step3Certifica
                     )}
                 </Form.Group>
             </div>
+
+            {/* Lightbox xem ảnh chứng chỉ */}
+            {selectedImage && (
+                <div className="certificate-lightbox" onClick={() => setSelectedImage(null)}>
+                    <div className="certificate-lightbox-content" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            type="button"
+                            className="certificate-lightbox-close"
+                            onClick={() => setSelectedImage(null)}
+                            aria-label="Đóng"
+                        >
+                            ×
+                        </button>
+                        <img src={selectedImage} alt="Certificate preview" className="certificate-lightbox-image" />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

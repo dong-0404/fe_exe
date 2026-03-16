@@ -6,7 +6,7 @@ interface AuthBannerProps {
 }
 
 export const AuthBanner = ({
-    imageSrc = '/src/assets/images/back-login.png',
+    imageSrc = '/images/banners/back-login.png',
     alt = 'TutorLink Banner'
 }: AuthBannerProps) => {
     return (

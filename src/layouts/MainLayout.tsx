@@ -5,11 +5,43 @@ import { Footer } from './Footer'
 import './MainLayout.css'
 import { getCurrentUser, isAuthenticated, clearAuthData } from '../features/auth/utils/authHelpers'
 import { NotificationBell } from '../features/chat/components/NotificationBell'
+import { useEffect, useState } from 'react'
 
 export const MainLayout = () => {
   const navigate = useNavigate()
   const currentUser = getCurrentUser()
   const isLoggedIn = isAuthenticated()
+  const [avatarUrl, setAvatarUrl] = useState<string>('')
+
+  // Đồng bộ avatar từ localStorage và lắng nghe khi avatar được cập nhật ở trang hồ sơ
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const loadAvatar = () => {
+      const url = localStorage.getItem('userAvatarUrl') || ''
+      setAvatarUrl(url)
+    }
+
+    loadAvatar()
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === 'userAvatarUrl') {
+        loadAvatar()
+      }
+    }
+
+    const handleCustomAvatarUpdate = () => {
+      loadAvatar()
+    }
+
+    window.addEventListener('storage', handleStorage)
+    window.addEventListener('userAvatarUpdated', handleCustomAvatarUpdate as EventListener)
+
+    return () => {
+      window.removeEventListener('storage', handleStorage)
+      window.removeEventListener('userAvatarUpdated', handleCustomAvatarUpdate as EventListener)
+    }
+  }, [])
 
   const handleLogout = () => {
     clearAuthData()
@@ -65,12 +97,20 @@ export const MainLayout = () => {
                     className="d-flex align-items-center gap-2 border-0"
                     style={{ backgroundColor: 'white', color: '#0066cc' }}
                   >
-                    <div
-                      className="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white"
-                      style={{ width: '36px', height: '36px', fontSize: '14px', fontWeight: 'bold' }}
-                    >
-                      {currentUser?.email?.charAt(0).toUpperCase() || 'U'}
-                    </div>
+                    {avatarUrl ? (
+                      <img
+                        src={avatarUrl}
+                        alt={currentUser?.email || 'User avatar'}
+                        style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }}
+                      />
+                    ) : (
+                      <div
+                        className="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white"
+                        style={{ width: '36px', height: '36px', fontSize: '14px', fontWeight: 'bold' }}
+                      >
+                        {currentUser?.email?.charAt(0).toUpperCase() || 'U'}
+                      </div>
+                    )}
                     <span className="fw-medium">
                       {currentUser?.email?.split('@')[0] || 'User'}
                     </span>
@@ -82,9 +122,6 @@ export const MainLayout = () => {
                     </Dropdown.Item>
                     <Dropdown.Item onClick={() => navigate(routes.chat)}>
                       💬 Chat
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => navigate('/settings')}>
-                      ⚙️ Cài đặt
                     </Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={handleLogout} className="text-danger">
